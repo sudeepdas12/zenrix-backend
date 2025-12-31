@@ -12,6 +12,7 @@ This folder contains the database seed script and restore utilities for the Zenr
 ## 🚀 Quick Start (New Machine Setup)
 
 ### Prerequisites
+
 - Node.js installed
 - MongoDB running locally (default: `mongodb://localhost:27017/zenrix`)
 - Project dependencies installed (`npm install`)
@@ -19,17 +20,20 @@ This folder contains the database seed script and restore utilities for the Zenr
 ### Restore Database
 
 **Windows (PowerShell):**
+
 ```powershell
 .\db-backup\restore.ps1
 ```
 
 **Linux/Mac (Bash):**
+
 ```bash
 chmod +x db-backup/restore.sh
 ./db-backup/restore.sh
 ```
 
 **Manual (any OS):**
+
 ```bash
 node db-backup/seed-data.js
 ```
@@ -52,25 +56,30 @@ The seed script creates:
 After restoring the database, you can login with:
 
 **Regular User:**
+
 - Email: `john@example.com`
 - Password: `password123`
 
 **Another User:**
+
 - Email: `jane@example.com`
 - Password: `password123`
 
 **Admin User:**
+
 - Email: `admin@zenrix.com`
 - Password: (value from `ADMIN_PASSWORD` in `.env`, default: `admin123`)
 
 ## ⚙️ Configuration
 
 The seed script uses the `MONGODB_URI` from your `.env` file. If not found, it defaults to:
+
 ```
 mongodb://localhost:27017/zenrix
 ```
 
 Make sure your `.env` file contains:
+
 ```env
 MONGODB_URI=mongodb://localhost:27017/zenrix
 ADMIN_PASSWORD=admin123
@@ -82,6 +91,7 @@ JWT_SECRET=your-jwt-secret
 **⚠️ Warning:** Running the seed script will **delete all existing data** in the database and replace it with fresh sample data.
 
 If you want to keep existing data:
+
 1. Open `seed-data.js`
 2. Comment out the "Clear existing data" section (lines ~44-53)
 
@@ -96,13 +106,16 @@ If you want to keep existing data:
 ## 🐛 Troubleshooting
 
 **MongoDB connection error:**
+
 - Ensure MongoDB is running: `mongod` or check MongoDB service
 - Verify connection string in `.env`
 
 **Module not found errors:**
+
 - Run `npm install` to install dependencies
 
 **Permission denied (Linux/Mac):**
+
 - Make script executable: `chmod +x db-backup/restore.sh`
 
 ## 🔗 Related Files

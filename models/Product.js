@@ -4,65 +4,65 @@ const productSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Product name is required'],
-    trim: true
+    trim: true,
   },
   price: {
     type: Number,
     required: [true, 'Price is required'],
-    min: [0, 'Price must be positive']
+    min: [0, 'Price must be positive'],
   },
   description: {
     type: String,
-    required: [true, 'Description is required']
+    required: [true, 'Description is required'],
   },
   image: {
     type: String,
-    default: 'https://via.placeholder.com/400x300?text=Zenrix+Product'
+    default: 'https://via.placeholder.com/400x300?text=Zenrix+Product',
   },
   images: {
     type: [String],
-    default: []
+    default: [],
   },
   category: {
     type: String,
     required: [true, 'Category is required'],
-    enum: ['electronics', 'fashion', 'home', 'beauty', 'other']
+    enum: ['electronics', 'fashion', 'home', 'beauty', 'other'],
   },
   stock: {
     type: Number,
     required: true,
     default: 0,
-    min: [0, 'Stock cannot be negative']
+    min: [0, 'Stock cannot be negative'],
   },
   featured: {
     type: Boolean,
-    default: false
+    default: false,
   },
   onSale: {
     type: Boolean,
-    default: false
+    default: false,
   },
   salePrice: {
     type: Number,
-    min: [0, 'Sale price must be positive']
+    min: [0, 'Sale price must be positive'],
   },
   saleLabel: {
     type: String,
-    default: 'On Sale'
+    default: 'On Sale',
   },
   saleEnd: {
-    type: Date
+    type: Date,
   },
   rating: {
     type: Number,
     default: 4.5,
     min: 0,
-    max: 5
+    max: 5,
   },
   createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model('Product', productSchema);

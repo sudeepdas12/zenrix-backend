@@ -7,7 +7,7 @@ const assert = require('assert');
 let mongod;
 let app;
 
-describe('Admin reply behavior for closed/solved tickets', function() {
+describe('Admin reply behavior for closed/solved tickets', function () {
   this.timeout(30000);
 
   before(async () => {
@@ -46,7 +46,7 @@ describe('Admin reply behavior for closed/solved tickets', function() {
       firstName: 'Test',
       lastName: 'User',
       email: uniqueEmail,
-      password: 'password123'
+      password: 'password123',
     });
 
     // create a closed ticket
@@ -55,7 +55,7 @@ describe('Admin reply behavior for closed/solved tickets', function() {
       subject: 'Issue',
       description: 'Problem description',
       messages: [{ sender: 'user', senderName: 'Test User', message: 'Hello' }],
-      status: 'closed'
+      status: 'closed',
     });
 
     const adminToken = jwt.sign({ isAdmin: true }, process.env.JWT_SECRET);
@@ -66,7 +66,11 @@ describe('Admin reply behavior for closed/solved tickets', function() {
       .set('Authorization', `Bearer ${adminToken}`)
       .send({ message: 'Admin reply while closed' });
 
-    assert.strictEqual(res1.status, 403, 'Expected 403 when replying to closed ticket without reopen');
+    assert.strictEqual(
+      res1.status,
+      403,
+      'Expected 403 when replying to closed ticket without reopen'
+    );
 
     // attempt to reply while providing status to reopen -> should succeed
     const res2 = await request(app)

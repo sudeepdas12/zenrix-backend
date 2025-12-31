@@ -9,16 +9,19 @@ The application now supports Google and Facebook OAuth authentication. To enable
 ## 🟦 Google OAuth Setup
 
 ### 1. Create a Google Cloud Project
+
 1. Go to [Google Cloud Console](https://console.cloud.google.com)
 2. Click "Select a project" → "New Project"
 3. Enter project name (e.g., "Zenrix Store") → Click "Create"
 
 ### 2. Enable Google+ API
+
 1. In the left sidebar, go to "APIs & Services" → "Library"
 2. Search for "Google+ API"
 3. Click on it and press "Enable"
 
 ### 3. Create OAuth Credentials
+
 1. Go to "APIs & Services" → "Credentials"
 2. Click "Create Credentials" → "OAuth client ID"
 3. If prompted, configure the OAuth consent screen:
@@ -35,6 +38,7 @@ The application now supports Google and Facebook OAuth authentication. To enable
 5. Copy the **Client ID** and **Client Secret**
 
 ### 4. Add to .env file
+
 ```env
 GOOGLE_CLIENT_ID=your-actual-client-id.apps.googleusercontent.com
 GOOGLE_CLIENT_SECRET=your-actual-client-secret
@@ -46,6 +50,7 @@ GOOGLE_CALLBACK_URL=http://localhost:3000/api/auth/google/callback
 ## 🔵 Facebook OAuth Setup
 
 ### 1. Create a Facebook App
+
 1. Go to [Facebook Developers](https://developers.facebook.com)
 2. Click "My Apps" → "Create App"
 3. Choose "Consumer" → Click "Next"
@@ -54,6 +59,7 @@ GOOGLE_CALLBACK_URL=http://localhost:3000/api/auth/google/callback
 6. Click "Create App"
 
 ### 2. Add Facebook Login Product
+
 1. In your app dashboard, find "Add a Product"
 2. Click "Set Up" on **Facebook Login**
 3. Choose "Web" platform
@@ -61,6 +67,7 @@ GOOGLE_CALLBACK_URL=http://localhost:3000/api/auth/google/callback
 5. Click "Save" → "Continue"
 
 ### 3. Configure Facebook Login Settings
+
 1. In the left sidebar, go to "Facebook Login" → "Settings"
 2. Add to "Valid OAuth Redirect URIs":
    ```
@@ -69,10 +76,12 @@ GOOGLE_CALLBACK_URL=http://localhost:3000/api/auth/google/callback
 3. Click "Save Changes"
 
 ### 4. Get App Credentials
+
 1. Go to "Settings" → "Basic"
 2. Copy the **App ID** and **App Secret** (click "Show" to reveal)
 
 ### 5. Add to .env file
+
 ```env
 FACEBOOK_APP_ID=your-facebook-app-id
 FACEBOOK_APP_SECRET=your-facebook-app-secret
@@ -94,6 +103,7 @@ FACEBOOK_CALLBACK_URL=http://localhost:3000/api/auth/facebook/callback
 ## 🔒 Security Notes
 
 ### For Production:
+
 1. **Update callback URLs** to your production domain:
    - Google: `https://yourdomain.com/api/auth/google/callback`
    - Facebook: `https://yourdomain.com/api/auth/facebook/callback`
@@ -101,8 +111,9 @@ FACEBOOK_CALLBACK_URL=http://localhost:3000/api/auth/facebook/callback
 2. **Enable HTTPS** - OAuth requires secure connections in production
 
 3. **Update session cookie settings** in server.js:
+
    ```javascript
-   cookie: { 
+   cookie: {
      secure: true,  // Requires HTTPS
      httpOnly: true,
      sameSite: 'strict'
@@ -118,15 +129,18 @@ FACEBOOK_CALLBACK_URL=http://localhost:3000/api/auth/facebook/callback
 ## ❓ Troubleshooting
 
 ### "Redirect URI mismatch" error
+
 - Ensure callback URLs in Google/Facebook console exactly match your .env file
 - Check for trailing slashes
 - Verify http vs https
 
 ### "App not verified" warning (Google)
+
 - Normal for development
 - For production, submit app for verification
 
 ### Users not being created
+
 - Check MongoDB connection
 - Verify User model has correct schema
 - Check server console for errors
@@ -151,6 +165,7 @@ FACEBOOK_CALLBACK_URL=http://localhost:3000/api/auth/facebook/callback
 Without setting up OAuth credentials, the buttons will redirect but fail authentication. The app will still work with email/password authentication.
 
 To use social login:
+
 1. Set up credentials as described above
 2. Add to `.env` file
 3. Restart server

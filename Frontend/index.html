@@ -1,63 +1,120 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zenrix - Nepali Digital Marketplace</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js" defer></script>
     <style>
       :root {
         --zenrix-bg: linear-gradient(135deg, #060b1a 0%, #0f172a 35%, #1e1b4b 65%, #312e81 100%);
-        --zenrix-card: rgba(255,255,255,0.04);
+        --zenrix-card: rgba(255, 255, 255, 0.04);
       }
       body {
-        font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-family:
+          'Space Grotesk',
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
         background: #0f172a;
         color: #0f172a;
       }
-      h1, h2, h3, h4, .display-font {
+      h1,
+      h2,
+      h3,
+      h4,
+      .display-font {
         font-family: 'Clash Display', 'Space Grotesk', sans-serif;
       }
     </style>
-</head>
-<body class="bg-[#060a16] relative">
-    <div class="absolute inset-0 opacity-70" aria-hidden="true" style="background-image: radial-gradient(circle at 20% 20%, rgba(99,102,241,0.25), transparent 45%), radial-gradient(circle at 80% 0%, rgba(8,145,178,0.25), transparent 40%), radial-gradient(circle at 50% 80%, rgba(244,114,182,0.2), transparent 45%);"></div>
+  </head>
+  <body class="bg-[#060a16] relative">
+    <div
+      class="absolute inset-0 opacity-70"
+      aria-hidden="true"
+      style="
+        background-image:
+          radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.25), transparent 45%),
+          radial-gradient(circle at 80% 0%, rgba(8, 145, 178, 0.25), transparent 40%),
+          radial-gradient(circle at 50% 80%, rgba(244, 114, 182, 0.2), transparent 45%);
+      "
+    ></div>
     <div class="relative">
-    <custom-navbar></custom-navbar>
-    <main class="container mx-auto px-4 py-12 lg:py-16 text-white">
+      <custom-navbar></custom-navbar>
+      <main class="container mx-auto px-4 py-12 lg:py-16 text-white">
         <div id="pageContent" class="prose max-w-none">Loading page content…</div>
 
         <!-- Hero Section (Aurora Edition) -->
-        <section id="heroSection" class="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-800 text-white shadow-[0_25px_80px_rgba(15,23,42,0.4)] home-hero">
-          <div id="heroBackgroundImage" class="absolute inset-0 bg-cover bg-center opacity-50 hidden home-hero-bg" aria-hidden="true"></div>
+        <section
+          id="heroSection"
+          class="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-800 text-white shadow-[0_25px_80px_rgba(15,23,42,0.4)] home-hero"
+        >
+          <div
+            id="heroBackgroundImage"
+            class="absolute inset-0 bg-cover bg-center opacity-50 hidden home-hero-bg"
+            aria-hidden="true"
+          ></div>
           <div class="absolute inset-0 opacity-60 home-hero-overlay" aria-hidden="true">
-            <div class="absolute -left-32 top-10 w-64 h-64 bg-emerald-500/40 blur-[120px] rounded-full"></div>
-            <div class="absolute right-0 -bottom-32 w-80 h-80 bg-indigo-500/30 blur-[140px] rounded-full"></div>
-            <div class="absolute inset-0 bg-[conic-gradient(from_120deg,rgba(255,255,255,0.1),transparent_55%)]"></div>
+            <div
+              class="absolute -left-32 top-10 w-64 h-64 bg-emerald-500/40 blur-[120px] rounded-full"
+            ></div>
+            <div
+              class="absolute right-0 -bottom-32 w-80 h-80 bg-indigo-500/30 blur-[140px] rounded-full"
+            ></div>
+            <div
+              class="absolute inset-0 bg-[conic-gradient(from_120deg,rgba(255,255,255,0.1),transparent_55%)]"
+            ></div>
           </div>
 
           <div class="relative grid lg:grid-cols-[1.2fr_0.8fr] gap-12 p-10 lg:p-16 items-center">
             <div class="space-y-8">
-              <div class="inline-flex items-center gap-2 px-5 py-2 border border-white/20 rounded-full bg-white/5 backdrop-blur">
+              <div
+                class="inline-flex items-center gap-2 px-5 py-2 border border-white/20 rounded-full bg-white/5 backdrop-blur"
+              >
                 <span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span>
-                <span id="heroBadgeText" class="text-sm font-semibold tracking-wide">Zenrix Spotlight • Winter 2025</span>
+                <span id="heroBadgeText" class="text-sm font-semibold tracking-wide"
+                  >Zenrix Spotlight • Winter 2025</span
+                >
               </div>
               <div class="space-y-4">
-                <h1 id="heroTitle" class="text-4xl lg:text-6xl font-black leading-tight tracking-tight">
-                  Nepal's style lab for <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-sky-300 to-indigo-300">fearless</span> everyday living.
+                <h1
+                  id="heroTitle"
+                  class="text-4xl lg:text-6xl font-black leading-tight tracking-tight"
+                >
+                  Nepal's style lab for
+                  <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-sky-300 to-indigo-300"
+                    >fearless</span
+                  >
+                  everyday living.
                 </h1>
                 <p id="heroSubtitle" class="text-lg text-white/85 max-w-2xl">
-                  Limited-run electronics, bold fashion capsules, and slow-home objects built with Nepali creators. Same-week delivery nationwide.
+                  Limited-run electronics, bold fashion capsules, and slow-home objects built with
+                  Nepali creators. Same-week delivery nationwide.
                 </p>
               </div>
               <div class="flex flex-wrap gap-3">
-                <a id="heroPrimaryCta" href="products.html" class="px-7 py-3 rounded-2xl bg-white text-slate-900 font-semibold shadow-xl shadow-slate-900/20 hover:-translate-y-0.5 transition">Browse Collections</a>
-                <a href="products.html?category=sale" class="px-7 py-3 rounded-2xl border border-white/40 text-white font-semibold hover:bg-white/10 transition">On Sale</a>
+                <a
+                  id="heroPrimaryCta"
+                  href="products.html"
+                  class="px-7 py-3 rounded-2xl bg-white text-slate-900 font-semibold shadow-xl shadow-slate-900/20 hover:-translate-y-0.5 transition"
+                  >Browse Collections</a
+                >
+                <a
+                  href="products.html?category=sale"
+                  class="px-7 py-3 rounded-2xl border border-white/40 text-white font-semibold hover:bg-white/10 transition"
+                  >On Sale</a
+                >
               </div>
               <div class="grid sm:grid-cols-3 gap-4 text-sm text-white/80">
                 <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
@@ -81,18 +138,32 @@
             </div>
 
             <div class="relative">
-              <div class="absolute -inset-10 bg-gradient-to-b from-white/20 via-white/5 to-transparent blur-3xl" aria-hidden="true"></div>
-              <div class="relative bg-white text-slate-900 rounded-[32px] p-6 shadow-2xl border border-white/70 backdrop-blur">
+              <div
+                class="absolute -inset-10 bg-gradient-to-b from-white/20 via-white/5 to-transparent blur-3xl"
+                aria-hidden="true"
+              ></div>
+              <div
+                class="relative bg-white text-slate-900 rounded-[32px] p-6 shadow-2xl border border-white/70 backdrop-blur"
+              >
                 <div class="flex items-center justify-between mb-6">
                   <div>
                     <p class="text-xs uppercase tracking-[0.3em] text-gray-400">Spotlight bundle</p>
-                    <h3 id="spotlightBundleTitle" class="text-2xl font-bold text-gray-900">Curated Weekend Kit</h3>
+                    <h3 id="spotlightBundleTitle" class="text-2xl font-bold text-gray-900">
+                      Curated Weekend Kit
+                    </h3>
                   </div>
                   <span class="text-xs px-3 py-1 bg-gray-900 text-white rounded-full">New</span>
                 </div>
-                <div class="relative rounded-3xl bg-gradient-to-br from-indigo-50 to-white border border-gray-100 overflow-hidden">
-                  <div id="spotlightBundleImage" class="hidden absolute inset-0 bg-cover bg-center opacity-70"></div>
-                  <div class="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_30%_20%,#6366f1,transparent_55%)]"></div>
+                <div
+                  class="relative rounded-3xl bg-gradient-to-br from-indigo-50 to-white border border-gray-100 overflow-hidden"
+                >
+                  <div
+                    id="spotlightBundleImage"
+                    class="hidden absolute inset-0 bg-cover bg-center opacity-70"
+                  ></div>
+                  <div
+                    class="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_30%_20%,#6366f1,transparent_55%)]"
+                  ></div>
                   <div class="relative grid grid-cols-2 gap-3 p-5">
                     <div class="rounded-2xl bg-white/90 p-4 shadow-lg shadow-indigo-200">
                       <p class="text-xs tracking-wide text-gray-500">Audio</p>
@@ -104,7 +175,9 @@
                       <p class="text-lg font-semibold text-gray-900">Pulse S5</p>
                       <p class="text-xs text-gray-500 mt-1">रु 26,599</p>
                     </div>
-                    <div class="col-span-2 rounded-2xl bg-white/70 p-4 border border-white/60 flex items-center justify-between">
+                    <div
+                      class="col-span-2 rounded-2xl bg-white/70 p-4 border border-white/60 flex items-center justify-between"
+                    >
                       <div>
                         <p class="text-xs tracking-wide text-gray-500">Carry</p>
                         <p class="text-lg font-semibold text-gray-900">Urban Explorer</p>
@@ -113,8 +186,14 @@
                     </div>
                   </div>
                 </div>
-                <p id="spotlightBundleCopy" class="text-sm text-gray-600 mt-4">Desk-ready audio, wearable, and carry picks — matched to look and perform together.</p>
-                <ul id="spotlightBundleList" class="mt-4 border border-gray-100 rounded-2xl overflow-hidden">
+                <p id="spotlightBundleCopy" class="text-sm text-gray-600 mt-4">
+                  Desk-ready audio, wearable, and carry picks — matched to look and perform
+                  together.
+                </p>
+                <ul
+                  id="spotlightBundleList"
+                  class="mt-4 border border-gray-100 rounded-2xl overflow-hidden"
+                >
                   <li class="flex items-center gap-3 p-3">
                     <div class="w-12 h-12 rounded-2xl bg-gray-100 animate-pulse"></div>
                     <div class="flex-1">
@@ -125,10 +204,19 @@
                 </ul>
                 <div class="mt-5 flex items-center justify-between">
                   <div>
-                    <p id="spotlightBundlePrice" class="text-3xl font-extrabold text-indigo-600">रु 32,999</p>
-                    <p id="spotlightBundleMeta" class="text-xs text-gray-500">Bundle & save • Ships free</p>
+                    <p id="spotlightBundlePrice" class="text-3xl font-extrabold text-indigo-600">
+                      रु 32,999
+                    </p>
+                    <p id="spotlightBundleMeta" class="text-xs text-gray-500">
+                      Bundle & save • Ships free
+                    </p>
                   </div>
-                  <a id="spotlightBundleCta" href="products.html" class="px-5 py-3 bg-gray-900 text-white rounded-2xl font-semibold hover:bg-gray-800 transition">Shop bundle</a>
+                  <a
+                    id="spotlightBundleCta"
+                    href="products.html"
+                    class="px-5 py-3 bg-gray-900 text-white rounded-2xl font-semibold hover:bg-gray-800 transition"
+                    >Shop bundle</a
+                  >
                 </div>
               </div>
             </div>
@@ -136,47 +224,110 @@
         </section>
 
         <!-- Search & Discovery -->
-        <section class="relative overflow-hidden rounded-[32px] bg-white/10 backdrop-blur-xl border border-white/10 shadow-[0_20px_70px_rgba(15,23,42,0.45)] mt-16">
-          <div class="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_10%_20%,rgba(14,165,233,0.4),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(236,72,153,0.35),transparent_40%)]"></div>
+        <section
+          class="relative overflow-hidden rounded-[32px] bg-white/10 backdrop-blur-xl border border-white/10 shadow-[0_20px_70px_rgba(15,23,42,0.45)] mt-16"
+        >
+          <div
+            class="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_10%_20%,rgba(14,165,233,0.4),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(236,72,153,0.35),transparent_40%)]"
+          ></div>
           <div class="relative grid lg:grid-cols-[1.1fr_0.9fr] gap-10 p-8 lg:p-12">
             <div class="space-y-6">
               <div>
                 <p class="text-sm uppercase tracking-[0.4em] text-slate-200 mb-2">Discover</p>
-                <h2 class="text-3xl font-semibold text-white">Find the next piece that feels like you.</h2>
-                <p class="text-white/80">Search across tech, fashion, slow home, and creator collaborations—all localized to Nepali rupees.</p>
+                <h2 class="text-3xl font-semibold text-white">
+                  Find the next piece that feels like you.
+                </h2>
+                <p class="text-white/80">
+                  Search across tech, fashion, slow home, and creator collaborations—all localized
+                  to Nepali rupees.
+                </p>
               </div>
               <form id="searchForm" class="relative">
-                <div class="relative flex items-center bg-white/95 rounded-3xl border border-white/40 shadow-xl">
+                <div
+                  class="relative flex items-center bg-white/95 rounded-3xl border border-white/40 shadow-xl"
+                >
                   <div class="absolute left-5 text-gray-400">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
                     </svg>
                   </div>
-                  <input type="text" id="searchInput" placeholder="Search products, drop codes, or collections" class="w-full pl-14 pr-36 py-5 text-base text-slate-900 bg-transparent rounded-3xl focus:ring-0 focus:outline-none">
-                  <button type="submit" class="absolute right-2 px-6 py-2.5 bg-slate-900 text-white rounded-2xl font-semibold hover:bg-slate-800 transition">Search</button>
+                  <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search products, drop codes, or collections"
+                    class="w-full pl-14 pr-36 py-5 text-base text-slate-900 bg-transparent rounded-3xl focus:ring-0 focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    class="absolute right-2 px-6 py-2.5 bg-slate-900 text-white rounded-2xl font-semibold hover:bg-slate-800 transition"
+                  >
+                    Search
+                  </button>
                 </div>
               </form>
               <div class="flex flex-wrap gap-2">
                 <span class="text-xs uppercase tracking-[0.4em] text-slate-300">Trending</span>
                 <div class="flex flex-wrap gap-2">
-                  <button class="search-tag px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-medium text-white hover:bg-white/25 transition">Electronics</button>
-                  <button class="search-tag px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-medium text-white hover:bg-white/25 transition">Fashion</button>
-                  <button class="search-tag px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-medium text-white hover:bg-white/25 transition">Home & Kitchen</button>
-                  <button class="search-tag px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-medium text-white hover:bg-white/25 transition">Beauty</button>
-                  <button class="search-tag px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-medium text-white hover:bg-white/25 transition">Sports</button>
+                  <button
+                    class="search-tag px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-medium text-white hover:bg-white/25 transition"
+                  >
+                    Electronics
+                  </button>
+                  <button
+                    class="search-tag px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-medium text-white hover:bg-white/25 transition"
+                  >
+                    Fashion
+                  </button>
+                  <button
+                    class="search-tag px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-medium text-white hover:bg-white/25 transition"
+                  >
+                    Home & Kitchen
+                  </button>
+                  <button
+                    class="search-tag px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-medium text-white hover:bg-white/25 transition"
+                  >
+                    Beauty
+                  </button>
+                  <button
+                    class="search-tag px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-medium text-white hover:bg-white/25 transition"
+                  >
+                    Sports
+                  </button>
                 </div>
               </div>
 
-              <div id="searchResults" class="hidden bg-white/10 rounded-3xl border border-white/20 p-6">
+              <div
+                id="searchResults"
+                class="hidden bg-white/10 rounded-3xl border border-white/20 p-6"
+              >
                 <div class="flex items-center justify-between mb-4">
                   <h3 class="text-lg font-semibold text-white">Search Results</h3>
-                  <button id="clearSearch" class="text-sm text-emerald-200 hover:text-white font-medium">Clear</button>
+                  <button
+                    id="clearSearch"
+                    class="text-sm text-emerald-200 hover:text-white font-medium"
+                  >
+                    Clear
+                  </button>
                 </div>
-                <div id="searchResultsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                </div>
+                <div id="searchResultsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
                 <div id="noResults" class="hidden text-center py-6 text-white/70">
-                  <svg class="w-12 h-12 mx-auto mb-3 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  <svg
+                    class="w-12 h-12 mx-auto mb-3 text-white/40"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                   <p class="text-base font-medium">No products found</p>
                   <p class="text-sm text-white/60">Try different keywords or browse all products</p>
@@ -184,7 +335,9 @@
               </div>
             </div>
             <div class="space-y-6">
-              <div class="rounded-[28px] bg-white/95 text-slate-900 p-6 shadow-2xl border border-white/80">
+              <div
+                class="rounded-[28px] bg-white/95 text-slate-900 p-6 shadow-2xl border border-white/80"
+              >
                 <p class="text-xs uppercase tracking-[0.3em] text-gray-400">Live stats</p>
                 <div class="grid grid-cols-2 gap-4 mt-4">
                   <div>
@@ -205,12 +358,18 @@
                   </div>
                 </div>
               </div>
-              <div class="rounded-[28px] bg-gradient-to-br from-slate-900 to-slate-800 p-6 border border-white/10">
+              <div
+                class="rounded-[28px] bg-gradient-to-br from-slate-900 to-slate-800 p-6 border border-white/10"
+              >
                 <p class="text-xs uppercase tracking-[0.4em] text-white/50">Next drop</p>
                 <h3 class="text-2xl font-semibold mt-3">Capsule 07 — Kathmandu Dusk</h3>
-                <p class="text-white/70 mt-2">Layered textiles with monsoon-proof outerwear. Limited to 120 pieces.</p>
+                <p class="text-white/70 mt-2">
+                  Layered textiles with monsoon-proof outerwear. Limited to 120 pieces.
+                </p>
                 <div class="mt-4 flex items-center gap-4 text-sm">
-                  <span class="px-3 py-1 rounded-full bg-white/10 border border-white/10">Opens Friday 9 PM</span>
+                  <span class="px-3 py-1 rounded-full bg-white/10 border border-white/10"
+                    >Opens Friday 9 PM</span
+                  >
                   <a href="products.html" class="text-emerald-200 font-medium">Join waitlist →</a>
                 </div>
               </div>
@@ -220,31 +379,61 @@
 
         <!-- Collections Grid -->
         <section class="mt-16 grid lg:grid-cols-3 gap-6">
-          <article class="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-emerald-500 to-teal-700 p-6 shadow-2xl">
-            <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.65),_transparent_55%)]"></div>
+          <article
+            class="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-emerald-500 to-teal-700 p-6 shadow-2xl"
+          >
+            <div
+              class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.65),_transparent_55%)]"
+            ></div>
             <div class="relative flex flex-col h-full">
               <p class="text-xs uppercase tracking-[0.4em] text-white/70">Drop 032</p>
               <h3 class="text-2xl font-bold mt-4">Mindful Home Objects</h3>
-              <p class="text-white/80 mt-2 flex-1">Ceramics, incense labs, and modular lighting designed for slow evenings.</p>
-              <a href="products.html?category=home" class="mt-6 inline-flex items-center gap-2 text-white font-semibold">Explore home <span>→</span></a>
+              <p class="text-white/80 mt-2 flex-1">
+                Ceramics, incense labs, and modular lighting designed for slow evenings.
+              </p>
+              <a
+                href="products.html?category=home"
+                class="mt-6 inline-flex items-center gap-2 text-white font-semibold"
+                >Explore home <span>→</span></a
+              >
             </div>
           </article>
-          <article class="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-indigo-500 via-blue-500 to-purple-600 p-6 shadow-2xl">
-            <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_70%_20%,rgba(255,255,255,0.6),transparent_50%)]"></div>
+          <article
+            class="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-indigo-500 via-blue-500 to-purple-600 p-6 shadow-2xl"
+          >
+            <div
+              class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_70%_20%,rgba(255,255,255,0.6),transparent_50%)]"
+            ></div>
             <div class="relative flex flex-col h-full">
               <p class="text-xs uppercase tracking-[0.4em] text-white/70">Drop 033</p>
               <h3 class="text-2xl font-bold mt-4">Creator Tech Lab</h3>
-              <p class="text-white/80 mt-2 flex-1">Audio stacks, cameras, and modular desks tuned for Nepali content creators.</p>
-              <a href="products.html?category=electronics" class="mt-6 inline-flex items-center gap-2 text-white font-semibold">View rigs <span>→</span></a>
+              <p class="text-white/80 mt-2 flex-1">
+                Audio stacks, cameras, and modular desks tuned for Nepali content creators.
+              </p>
+              <a
+                href="products.html?category=electronics"
+                class="mt-6 inline-flex items-center gap-2 text-white font-semibold"
+                >View rigs <span>→</span></a
+              >
             </div>
           </article>
-          <article class="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-rose-500 via-pink-500 to-orange-400 p-6 shadow-2xl">
-            <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_40%_0%,rgba(255,255,255,0.65),transparent_50%)]"></div>
+          <article
+            class="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-rose-500 via-pink-500 to-orange-400 p-6 shadow-2xl"
+          >
+            <div
+              class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_40%_0%,rgba(255,255,255,0.65),transparent_50%)]"
+            ></div>
             <div class="relative flex flex-col h-full">
               <p class="text-xs uppercase tracking-[0.4em] text-white/70">Drop 034</p>
               <h3 class="text-2xl font-bold mt-4">Street Capsule • Thamel</h3>
-              <p class="text-white/80 mt-2 flex-1">Genderless tailoring, tactile knits, and stormproof outerwear.</p>
-              <a href="products.html?category=fashion" class="mt-6 inline-flex items-center gap-2 text-white font-semibold">Shop capsule <span>→</span></a>
+              <p class="text-white/80 mt-2 flex-1">
+                Genderless tailoring, tactile knits, and stormproof outerwear.
+              </p>
+              <a
+                href="products.html?category=fashion"
+                class="mt-6 inline-flex items-center gap-2 text-white font-semibold"
+                >Shop capsule <span>→</span></a
+              >
             </div>
           </article>
         </section>
@@ -254,63 +443,104 @@
             <div>
               <p class="text-sm uppercase tracking-[0.4em] text-white/60">Spotlight</p>
               <h2 class="text-3xl font-bold">Featured products</h2>
-              <p class="text-white/70">Handpicked pieces that are live right now. Tap in before they sell out.</p>
+              <p class="text-white/70">
+                Handpicked pieces that are live right now. Tap in before they sell out.
+              </p>
             </div>
             <div class="flex flex-wrap gap-3 text-sm">
               <span class="px-4 py-2 rounded-full bg-white/10 border border-white/10">All</span>
-              <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10">Electronics</span>
+              <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10"
+                >Electronics</span
+              >
               <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10">Fashion</span>
               <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10">Home</span>
             </div>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="featuredProducts">
-            <div class="col-span-full rounded-2xl border border-dashed border-white/20 bg-white/5 p-6 text-center text-white/60">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            id="featuredProducts"
+          >
+            <div
+              class="col-span-full rounded-2xl border border-dashed border-white/20 bg-white/5 p-6 text-center text-white/60"
+            >
               Loading featured products…
             </div>
           </div>
         </section>
 
         <!-- Subscribe Section -->
-        <section class="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-slate-900 to-slate-800 border border-white/10 p-10 mt-16">
-          <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top,_rgba(147,197,253,0.4),transparent_55%)]"></div>
+        <section
+          class="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-slate-900 to-slate-800 border border-white/10 p-10 mt-16"
+        >
+          <div
+            class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top,_rgba(147,197,253,0.4),transparent_55%)]"
+          ></div>
           <div class="relative grid lg:grid-cols-2 gap-10 items-center">
             <div class="space-y-4">
               <p class="text-sm uppercase tracking-[0.4em] text-white/60">Stay in the loop</p>
-              <h3 class="text-4xl font-bold">Subscribe for weekly drops, deals, and first access.</h3>
-              <p class="text-white/70">No spam—just beautifully curated products, launch alerts, and insider-only offers.</p>
+              <h3 class="text-4xl font-bold">
+                Subscribe for weekly drops, deals, and first access.
+              </h3>
+              <p class="text-white/70">
+                No spam—just beautifully curated products, launch alerts, and insider-only offers.
+              </p>
               <ul class="text-sm text-white/70 space-y-1">
                 <li>• Early access to new arrivals</li>
                 <li>• Exclusive coupons and bundles</li>
                 <li>• Tips for tech, fashion, and home</li>
               </ul>
             </div>
-            <form id="subscribeForm" class="space-y-4 bg-white/10 border border-white/10 rounded-3xl p-6 backdrop-blur">
+            <form
+              id="subscribeForm"
+              class="space-y-4 bg-white/10 border border-white/10 rounded-3xl p-6 backdrop-blur"
+            >
               <div>
                 <label class="block text-sm font-medium text-white/80 mb-2">Email address</label>
-                <input type="email" name="email" required placeholder="you@example.com" class="w-full px-4 py-3 bg-white text-slate-900 rounded-2xl border border-white/70 focus:ring-2 focus:ring-indigo-500">
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="you@example.com"
+                  class="w-full px-4 py-3 bg-white text-slate-900 rounded-2xl border border-white/70 focus:ring-2 focus:ring-indigo-500"
+                />
               </div>
               <div class="flex items-center space-x-2 text-sm text-white/80">
-                <input type="checkbox" id="agree" name="agree" required class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500">
+                <input
+                  type="checkbox"
+                  id="agree"
+                  name="agree"
+                  required
+                  class="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500"
+                />
                 <label for="agree">I agree to receive updates and promotions.</label>
               </div>
-              <button type="submit" class="w-full bg-white text-slate-900 px-6 py-3 rounded-2xl font-semibold hover:bg-slate-100 transition">Subscribe</button>
-              <p class="text-xs text-white/60">You can unsubscribe anytime. We respect your inbox.</p>
+              <button
+                type="submit"
+                class="w-full bg-white text-slate-900 px-6 py-3 rounded-2xl font-semibold hover:bg-slate-100 transition"
+              >
+                Subscribe
+              </button>
+              <p class="text-xs text-white/60">
+                You can unsubscribe anytime. We respect your inbox.
+              </p>
             </form>
           </div>
         </section>
       </main>
-    <custom-footer></custom-footer>
+      <custom-footer></custom-footer>
     </div>
 
     <script src="components/navbar.js"></script>
     <script src="components/footer.js"></script>
     <script>
-      (function() {
-        const SEARCH_API_URL = (window.API_URL || (window.location?.origin ? `${window.location.origin}/api` : '/api')).replace(/\/$/, '') ;
+      (function () {
+        const SEARCH_API_URL = (
+          window.API_URL || (window.location?.origin ? `${window.location.origin}/api` : '/api')
+        ).replace(/\/$/, '');
         let allProducts = [];
         const SEARCH_NPR_NUMBER_FORMATTER = new Intl.NumberFormat('en-IN', {
           minimumFractionDigits: 2,
-          maximumFractionDigits: 2
+          maximumFractionDigits: 2,
         });
 
         function formatNpr(amount = 0) {
@@ -330,29 +560,32 @@
           }
         }
 
-      function searchProducts(query) {
-        if (!query.trim()) return [];
-        const searchTerm = query.toLowerCase();
-        return allProducts.filter(product => 
-          product.name.toLowerCase().includes(searchTerm) ||
-          product.description.toLowerCase().includes(searchTerm) ||
-          product.category.toLowerCase().includes(searchTerm)
-        );
-      }
+        function searchProducts(query) {
+          if (!query.trim()) return [];
+          const searchTerm = query.toLowerCase();
+          return allProducts.filter(
+            (product) =>
+              product.name.toLowerCase().includes(searchTerm) ||
+              product.description.toLowerCase().includes(searchTerm) ||
+              product.category.toLowerCase().includes(searchTerm)
+          );
+        }
 
-      function displaySearchResults(results) {
-        const resultsContainer = document.getElementById('searchResults');
-        const resultsGrid = document.getElementById('searchResultsGrid');
-        const noResults = document.getElementById('noResults');
+        function displaySearchResults(results) {
+          const resultsContainer = document.getElementById('searchResults');
+          const resultsGrid = document.getElementById('searchResultsGrid');
+          const noResults = document.getElementById('noResults');
 
-        resultsContainer.classList.remove('hidden');
+          resultsContainer.classList.remove('hidden');
 
-        if (results.length === 0) {
-          resultsGrid.innerHTML = '';
-          noResults.classList.remove('hidden');
-        } else {
-          noResults.classList.add('hidden');
-          resultsGrid.innerHTML = results.map(product => `
+          if (results.length === 0) {
+            resultsGrid.innerHTML = '';
+            noResults.classList.remove('hidden');
+          } else {
+            noResults.classList.add('hidden');
+            resultsGrid.innerHTML = results
+              .map(
+                (product) => `
             <a href="product.html?id=${product._id}" class="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-lg transition group">
               <div class="aspect-square bg-gray-100 rounded-lg mb-3 overflow-hidden">
                 <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition">
@@ -361,122 +594,336 @@
               <p class="text-xs text-gray-500 mb-2">${product.category}</p>
               <div class="flex items-center justify-between">
                 <span class="text-lg font-bold text-indigo-600">${formatNpr(product.price)}</span>
-                ${product.stock > 0 
-                  ? '<span class="text-xs text-green-600 font-medium">In Stock</span>' 
-                  : '<span class="text-xs text-red-600 font-medium">Out of Stock</span>'}
+                ${
+                  product.stock > 0
+                    ? '<span class="text-xs text-green-600 font-medium">In Stock</span>'
+                    : '<span class="text-xs text-red-600 font-medium">Out of Stock</span>'
+                }
               </div>
             </a>
-          `).join('');
+          `
+              )
+              .join('');
+          }
         }
-      }
 
         document.addEventListener('DOMContentLoaded', () => {
           loadAllProducts();
 
-        // Search form submission
-        const searchForm = document.getElementById('searchForm');
-        const searchInput = document.getElementById('searchInput');
-        
-        if (searchForm) {
-          searchForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const query = searchInput.value;
-            const results = searchProducts(query);
-            displaySearchResults(results);
-          });
+          // Search form submission
+          const searchForm = document.getElementById('searchForm');
+          const searchInput = document.getElementById('searchInput');
 
-          // Real-time search as user types
-          searchInput.addEventListener('input', (e) => {
-            const query = e.target.value;
-            if (query.length >= 2) {
+          if (searchForm) {
+            searchForm.addEventListener('submit', (e) => {
+              e.preventDefault();
+              const query = searchInput.value;
               const results = searchProducts(query);
               displaySearchResults(results);
-            }
-          });
-        }
+            });
 
-        // Clear search button
-        document.getElementById('clearSearch')?.addEventListener('click', () => {
-          searchInput.value = '';
-          document.getElementById('searchResults').classList.add('hidden');
-        });
-
-        // Popular search tags
-        document.querySelectorAll('.search-tag').forEach(tag => {
-          tag.addEventListener('click', () => {
-            searchInput.value = tag.textContent;
-            const results = searchProducts(tag.textContent);
-            displaySearchResults(results);
-          });
-        });
-
-        // Subscribe form
-        const subscribeForm = document.getElementById('subscribeForm');
-        if (subscribeForm) {
-          subscribeForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = subscribeForm.email.value.trim();
-            if (!email) return;
-            try {
-              const res = await fetch(`${SEARCH_API_URL}/subscribers`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, consent: true, source: 'homepage' })
-              });
-              const data = await res.json();
-              if (data.success) {
-                alert('✅ Thanks for subscribing! You will get weekly updates.');
-                subscribeForm.reset();
-              } else {
-                alert('❌ Could not subscribe: ' + (data.error || 'Unknown error'));
+            // Real-time search as user types
+            searchInput.addEventListener('input', (e) => {
+              const query = e.target.value;
+              if (query.length >= 2) {
+                const results = searchProducts(query);
+                displaySearchResults(results);
               }
-            } catch (err) {
-              alert('❌ Network error: ' + err.message);
-            }
+            });
+          }
+
+          // Clear search button
+          document.getElementById('clearSearch')?.addEventListener('click', () => {
+            searchInput.value = '';
+            document.getElementById('searchResults').classList.add('hidden');
           });
-        }
+
+          // Popular search tags
+          document.querySelectorAll('.search-tag').forEach((tag) => {
+            tag.addEventListener('click', () => {
+              searchInput.value = tag.textContent;
+              const results = searchProducts(tag.textContent);
+              displaySearchResults(results);
+            });
+          });
+
+          // Subscribe form
+          const subscribeForm = document.getElementById('subscribeForm');
+          if (subscribeForm) {
+            subscribeForm.addEventListener('submit', async (e) => {
+              e.preventDefault();
+              const email = subscribeForm.email.value.trim();
+              if (!email) return;
+              try {
+                const res = await fetch(`${SEARCH_API_URL}/subscribers`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ email, consent: true, source: 'homepage' }),
+                });
+                const data = await res.json();
+                if (data.success) {
+                  alert('✅ Thanks for subscribing! You will get weekly updates.');
+                  subscribeForm.reset();
+                } else {
+                  alert('❌ Could not subscribe: ' + (data.error || 'Unknown error'));
+                }
+              } catch (err) {
+                alert('❌ Network error: ' + err.message);
+              }
+            });
+          }
         });
       })();
     </script>
-<!-- ========== ZENRIX CHATBOT ========== -->
-<div id="chatbot-container">
-  <!-- Chat Button -->
-  <button id="chatbot-toggle" class="fixed bottom-6 right-6 bg-blue-600 text-white w-14 h-14 rounded-full shadow-lg hover:bg-blue-700 transition-all z-50 flex items-center justify-center" aria-label="Open chat">
-    <!-- chat bubble svg -->
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-      <path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-
-  <!-- Chat Window -->
-  <div id="chatbot-window" class="fixed bottom-24 right-6 w-80 h-96 bg-white rounded-lg shadow-xl hidden flex flex-col z-50 border">
-    <!-- Header -->
-    <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 rounded-t-lg flex justify-between items-center">
-      <div class="flex items-center">
-        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center mr-3">
-          <!-- robot svg -->
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-            <path d="M8 7h8v4H8z" stroke="#2563EB" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 11v4" stroke="#2563EB" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <rect x="7" y="3" width="10" height="6" rx="2" stroke="#2563EB" stroke-width="1.2" fill="#fff"/>
-          </svg>
-        </div>
-        <div>
-          <h3 class="font-bold">Zenrix Assistant</h3>
-          <p class="text-xs opacity-80">Online • 24/7 Support</p>
-        </div>
-      </div>
-      <button id="chatbot-close" class="text-white hover:text-gray-200" aria-label="Close chat">
-        <!-- close X svg -->
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-          <path d="M18 6L6 18M6 6l12 12" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- ========== ZENRIX CHATBOT ========== -->
+    <div id="chatbot-container">
+      <!-- Chat Button -->
+      <button
+        id="chatbot-toggle"
+        class="fixed bottom-6 right-6 bg-blue-600 text-white w-14 h-14 rounded-full shadow-lg hover:bg-blue-700 transition-all z-50 flex items-center justify-center"
+        aria-label="Open chat"
+      >
+        <!-- chat bubble svg -->
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden
+        >
+          <path
+            d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            stroke="#fff"
+            stroke-width="1.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       </button>
+
+      <!-- Chat Window -->
+      <div
+        id="chatbot-window"
+        class="fixed bottom-24 right-6 w-80 h-96 bg-white rounded-lg shadow-xl hidden flex flex-col z-50 border"
+      >
+        <!-- Header -->
+        <div
+          class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 rounded-t-lg flex justify-between items-center"
+        >
+          <div class="flex items-center">
+            <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center mr-3">
+              <!-- robot svg -->
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden
+              >
+                <path
+                  d="M8 7h8v4H8z"
+                  stroke="#2563EB"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 11v4"
+                  stroke="#2563EB"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="7"
+                  y="3"
+                  width="10"
+                  height="6"
+                  rx="2"
+                  stroke="#2563EB"
+                  stroke-width="1.2"
+                  fill="#fff"
+                />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold">Zenrix Assistant</h3>
+              <p class="text-xs opacity-80">Online • 24/7 Support</p>
+            </div>
+          </div>
+          <button id="chatbot-close" class="text-white hover:text-gray-200" aria-label="Close chat">
+            <!-- close X svg -->
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden
+            >
+              <path
+                d="M18 6L6 18M6 6l12 12"
+                stroke="#fff"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Messages -->
+        <div id="chatbot-messages" class="flex-grow p-4 overflow-y-auto space-y-3">
+          <div class="flex">
+            <div
+              class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0"
+            >
+              <!-- small robot svg -->
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden
+              >
+                <path
+                  d="M8 7h8v4H8z"
+                  stroke="#2563EB"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="7"
+                  y="3"
+                  width="10"
+                  height="6"
+                  rx="2"
+                  stroke="#2563EB"
+                  stroke-width="1"
+                  fill="#fff"
+                />
+              </svg>
+            </div>
+            <div class="bg-gray-100 rounded-lg p-3 max-w-[80%]">
+              <p class="text-sm">Hello! 👋 I'm Zenrix Assistant. How can I help you today?</p>
+              <p class="text-xs text-gray-500 mt-2">
+                Try asking about: products, delivery, or returns
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Input -->
+        <div class="border-t p-4">
+          <div class="flex space-x-2">
+            <input
+              type="text"
+              id="chatbot-input"
+              placeholder="Type your message..."
+              class="flex-grow border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              id="chatbot-send"
+              class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+              aria-label="Send message"
+            >
+              <!-- paper plane svg -->
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden
+              >
+                <path
+                  d="M22 2L11 13"
+                  stroke="#fff"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M22 2l-7 20 1-7 7-13z"
+                  stroke="#fff"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <button class="quick-btn" data-msg="What products do you have?">Products</button>
+            <button class="quick-btn" data-msg="What is delivery time?">Delivery</button>
+            <button class="quick-btn" data-msg="How to return product?">Returns</button>
+            <button class="quick-btn" data-msg="Contact support">Contact</button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Messages -->
-    <div id="chatbot-messages" class="flex-grow p-4 overflow-y-auto space-y-3">
-      <div class="flex">
+    <!-- Chatbot JavaScript -->
+    <script>
+      // Chatbot functionality
+      document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.getElementById('chatbot-toggle');
+        const closeBtn = document.getElementById('chatbot-close');
+        const chatWindow = document.getElementById('chatbot-window');
+        const chatInput = document.getElementById('chatbot-input');
+        const sendBtn = document.getElementById('chatbot-send');
+        const messagesDiv = document.getElementById('chatbot-messages');
+        const quickBtns = document.querySelectorAll('.quick-btn');
+
+        // Toggle chat window
+        toggleBtn.addEventListener('click', () => {
+          chatWindow.classList.toggle('hidden');
+          if (!chatWindow.classList.contains('hidden')) {
+            chatInput.focus();
+          }
+        });
+
+        closeBtn.addEventListener('click', () => {
+          chatWindow.classList.add('hidden');
+        });
+
+        // Send message
+        function sendMessage() {
+          const message = chatInput.value.trim();
+          if (message) {
+            addMessage('user', message);
+            chatInput.value = '';
+            getBotResponse(message);
+          }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') sendMessage();
+        });
+
+        // Quick buttons
+        quickBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const msg = btn.getAttribute('data-msg');
+            addMessage('user', msg);
+            getBotResponse(msg);
+          });
+        });
+
+        // Add message to chat
+        function addMessage(sender, text) {
+          const messageDiv = document.createElement('div');
+          messageDiv.className = `flex ${sender === 'user' ? 'justify-end' : ''}`;
+
+          messageDiv.innerHTML = `
+      ${
+        sender === 'bot'
+          ? `
         <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0">
           <!-- small robot svg -->
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
@@ -484,104 +931,16 @@
             <rect x="7" y="3" width="10" height="6" rx="2" stroke="#2563EB" stroke-width="1" fill="#fff"/>
           </svg>
         </div>
-        <div class="bg-gray-100 rounded-lg p-3 max-w-[80%]">
-          <p class="text-sm">Hello! 👋 I'm Zenrix Assistant. How can I help you today?</p>
-          <p class="text-xs text-gray-500 mt-2">Try asking about: products, delivery, or returns</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Input -->
-    <div class="border-t p-4">
-      <div class="flex space-x-2">
-        <input type="text" id="chatbot-input" placeholder="Type your message..." 
-               class="flex-grow border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        <button id="chatbot-send" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" aria-label="Send message">
-          <!-- paper plane svg -->
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-            <path d="M22 2L11 13" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M22 2l-7 20 1-7 7-13z" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-      <div class="flex flex-wrap gap-2 mt-3">
-        <button class="quick-btn" data-msg="What products do you have?">Products</button>
-        <button class="quick-btn" data-msg="What is delivery time?">Delivery</button>
-        <button class="quick-btn" data-msg="How to return product?">Returns</button>
-        <button class="quick-btn" data-msg="Contact support">Contact</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Chatbot JavaScript -->
-<script>
-// Chatbot functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const toggleBtn = document.getElementById('chatbot-toggle');
-  const closeBtn = document.getElementById('chatbot-close');
-  const chatWindow = document.getElementById('chatbot-window');
-  const chatInput = document.getElementById('chatbot-input');
-  const sendBtn = document.getElementById('chatbot-send');
-  const messagesDiv = document.getElementById('chatbot-messages');
-  const quickBtns = document.querySelectorAll('.quick-btn');
-
-  // Toggle chat window
-  toggleBtn.addEventListener('click', () => {
-    chatWindow.classList.toggle('hidden');
-    if (!chatWindow.classList.contains('hidden')) {
-      chatInput.focus();
-    }
-  });
-
-  closeBtn.addEventListener('click', () => {
-    chatWindow.classList.add('hidden');
-  });
-
-  // Send message
-  function sendMessage() {
-    const message = chatInput.value.trim();
-    if (message) {
-      addMessage('user', message);
-      chatInput.value = '';
-      getBotResponse(message);
-    }
-  }
-
-  sendBtn.addEventListener('click', sendMessage);
-  chatInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage();
-  });
-
-  // Quick buttons
-  quickBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const msg = btn.getAttribute('data-msg');
-      addMessage('user', msg);
-      getBotResponse(msg);
-    });
-  });
-
-  // Add message to chat
-  function addMessage(sender, text) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `flex ${sender === 'user' ? 'justify-end' : ''}`;
-    
-    messageDiv.innerHTML = `
-      ${sender === 'bot' ? `
-        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2 flex-shrink-0">
-          <!-- small robot svg -->
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-            <path d="M8 7h8v4H8z" stroke="#2563EB" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-            <rect x="7" y="3" width="10" height="6" rx="2" stroke="#2563EB" stroke-width="1" fill="#fff"/>
-          </svg>
-        </div>
-      ` : ''}
+      `
+          : ''
+      }
       <div class="${sender === 'user' ? 'bg-blue-600 text-white' : 'bg-gray-100'} rounded-lg p-3 max-w-[80%]">
         <p class="text-sm">${text}</p>
-        <p class="text-xs ${sender === 'user' ? 'text-blue-200' : 'text-gray-500'} mt-1">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</p>
+        <p class="text-xs ${sender === 'user' ? 'text-blue-200' : 'text-gray-500'} mt-1">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
       </div>
-      ${sender === 'user' ? `
+      ${
+        sender === 'user'
+          ? `
         <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center ml-2 flex-shrink-0">
           <!-- small user svg -->
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
@@ -589,84 +948,91 @@ document.addEventListener('DOMContentLoaded', function() {
             <path d="M4 21a8 8 0 0 1 16 0" stroke="#2563EB" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-      ` : ''}
+      `
+          : ''
+      }
     `;
-    
-    messagesDiv.appendChild(messageDiv);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-  }
 
-  // Bot responses
-  function getBotResponse(userMessage) {
-    const msg = userMessage.toLowerCase();
-    let response = '';
-    
-    // Simple response logic
-    if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
-      response = "Hello! Welcome to Zenrix. How can I assist you today?";
-    } else if (msg.includes('product') || msg.includes('item')) {
-      response = "We have electronics, fashion, home goods, and beauty products. Check our Products page for all items!";
-    } else if (msg.includes('price') || msg.includes('cost')) {
-      response = "Products start from रु 2,499. Check individual product pages for exact prices.";
-    } else if (msg.includes('delivery') || msg.includes('shipping')) {
-      response = "We deliver in 3-5 business days. Free shipping on orders over रु 7,500.";
-    } else if (msg.includes('return') || msg.includes('refund')) {
-      response = "We have a 30-day return policy. Contact support@zenrix.com for returns.";
-    } else if (msg.includes('contact') || msg.includes('support')) {
-      response = "Email: support@zenrix.com\nPhone: +977 9801234567\nHours: 9AM-6PM (NPT)";
-    } else if (msg.includes('order') || msg.includes('track')) {
-      response = "Check your Orders page for order status. Need help? Contact our support team.";
-    } else {
-      response = "I'm here to help! For detailed questions, please contact our support team at support@zenrix.com";
-    }
-    
-    // Simulate typing delay
-    setTimeout(() => {
-      addMessage('bot', response);
-    }, 1000);
-  }
-});
-</script>
+          messagesDiv.appendChild(messageDiv);
+          messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
 
-<!-- Chatbot CSS -->
-<style>
-#chatbot-window {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e5e7eb;
-}
+        // Bot responses
+        function getBotResponse(userMessage) {
+          const msg = userMessage.toLowerCase();
+          let response = '';
 
-#chatbot-messages {
-  scroll-behavior: smooth;
-}
+          // Simple response logic
+          if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+            response = 'Hello! Welcome to Zenrix. How can I assist you today?';
+          } else if (msg.includes('product') || msg.includes('item')) {
+            response =
+              'We have electronics, fashion, home goods, and beauty products. Check our Products page for all items!';
+          } else if (msg.includes('price') || msg.includes('cost')) {
+            response =
+              'Products start from रु 2,499. Check individual product pages for exact prices.';
+          } else if (msg.includes('delivery') || msg.includes('shipping')) {
+            response = 'We deliver in 3-5 business days. Free shipping on orders over रु 7,500.';
+          } else if (msg.includes('return') || msg.includes('refund')) {
+            response = 'We have a 30-day return policy. Contact support@zenrix.com for returns.';
+          } else if (msg.includes('contact') || msg.includes('support')) {
+            response = 'Email: support@zenrix.com\nPhone: +977 9801234567\nHours: 9AM-6PM (NPT)';
+          } else if (msg.includes('order') || msg.includes('track')) {
+            response =
+              'Check your Orders page for order status. Need help? Contact our support team.';
+          } else {
+            response =
+              "I'm here to help! For detailed questions, please contact our support team at support@zenrix.com";
+          }
 
-.quick-btn {
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
+          // Simulate typing delay
+          setTimeout(() => {
+            addMessage('bot', response);
+          }, 1000);
+        }
+      });
+    </script>
 
-.quick-btn:hover {
-  background: #e5e7eb;
-  transform: translateY(-1px);
-}
+    <!-- Chatbot CSS -->
+    <style>
+      #chatbot-window {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e5e7eb;
+      }
 
-.hidden {
-  display: none !important;
-}
+      #chatbot-messages {
+        scroll-behavior: smooth;
+      }
 
-/* Smooth animations */
-#chatbot-toggle, #chatbot-window {
-  transition: all 0.3s ease;
-}
+      .quick-btn {
+        background: #f3f4f6;
+        border: 1px solid #e5e7eb;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
 
-#chatbot-toggle:hover {
-  transform: scale(1.1);
-}
-</style>
-<!-- ========== END CHATBOT ========== -->
-</body>
+      .quick-btn:hover {
+        background: #e5e7eb;
+        transform: translateY(-1px);
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      /* Smooth animations */
+      #chatbot-toggle,
+      #chatbot-window {
+        transition: all 0.3s ease;
+      }
+
+      #chatbot-toggle:hover {
+        transform: scale(1.1);
+      }
+    </style>
+    <!-- ========== END CHATBOT ========== -->
+  </body>
 </html>

@@ -17,7 +17,7 @@ const heroStorage = multer.diskStorage({
     const unique = Date.now() + '-' + Math.round(Math.random() * 1e9);
     const ext = path.extname(file.originalname) || '.png';
     cb(null, `hero-${unique}${ext}`);
-  }
+  },
 });
 
 const heroUpload = multer({
@@ -27,7 +27,7 @@ const heroUpload = multer({
     const allowed = ['image/jpeg', 'image/png', 'image/webp'];
     if (allowed.includes(file.mimetype)) return cb(null, true);
     return cb(new Error('Only JPEG, PNG, WEBP allowed'));
-  }
+  },
 });
 
 // GET hero settings (public)
@@ -68,7 +68,7 @@ function normalizePayload(body = {}) {
   if (typeof body.spotlightItems === 'string') {
     normalized.spotlightItems = body.spotlightItems
       .split('\n')
-      .map(line => line.trim())
+      .map((line) => line.trim())
       .filter(Boolean);
   }
 

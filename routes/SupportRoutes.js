@@ -7,7 +7,12 @@ const { requireAdmin } = require('../middleware/auth');
 function validateSupportPayload(body) {
   const { name, email, subject, message } = body || {};
   if (!name || !email || !subject || !message) return false;
-  return { name: String(name).trim(), email: String(email).trim(), subject: String(subject).trim(), message: String(message).trim() };
+  return {
+    name: String(name).trim(),
+    email: String(email).trim(),
+    subject: String(subject).trim(),
+    message: String(message).trim(),
+  };
 }
 
 // Public: Submit support request
@@ -38,7 +43,8 @@ router.patch('/:id/status', requireAdmin, async (req, res) => {
   try {
     const { status } = req.body;
     const support = await Support.findById(req.params.id);
-    if (!support) return res.status(404).json({ success: false, error: 'Support request not found' });
+    if (!support)
+      return res.status(404).json({ success: false, error: 'Support request not found' });
     support.status = status || support.status;
     await support.save();
     res.json({ success: true, data: support });
@@ -51,7 +57,8 @@ router.patch('/:id/status', requireAdmin, async (req, res) => {
 router.delete('/:id', requireAdmin, async (req, res) => {
   try {
     const deleted = await Support.findByIdAndDelete(req.params.id);
-    if (!deleted) return res.status(404).json({ success: false, error: 'Support request not found' });
+    if (!deleted)
+      return res.status(404).json({ success: false, error: 'Support request not found' });
     res.json({ success: true, data: deleted });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });

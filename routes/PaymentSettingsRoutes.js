@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
     const ext = path.extname(file.originalname || '').toLowerCase();
     const unique = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
     cb(null, `${unique}${ext}`);
-  }
+  },
 });
 
 const upload = multer({
@@ -26,7 +26,7 @@ const upload = multer({
       return cb(new Error('Only image uploads are allowed'));
     }
     cb(null, true);
-  }
+  },
 });
 
 router.get('/', async (req, res) => {
@@ -48,13 +48,15 @@ router.put('/', requireAdmin, async (req, res) => {
       qrImageUrl,
       instructions,
       nepaliWallets,
-      updatedBy
+      updatedBy,
     } = req.body;
 
     if (typeof codEnabled === 'boolean') settings.codEnabled = codEnabled;
     if (typeof bankEnabled === 'boolean') settings.bankEnabled = bankEnabled;
     if (bankDetails && typeof bankDetails === 'object') {
-      const existingBankDetails = settings.bankDetails?.toObject ? settings.bankDetails.toObject() : (settings.bankDetails || {});
+      const existingBankDetails = settings.bankDetails?.toObject
+        ? settings.bankDetails.toObject()
+        : settings.bankDetails || {};
       settings.bankDetails = { ...existingBankDetails, ...bankDetails };
       settings.markModified('bankDetails');
     }
@@ -65,7 +67,7 @@ router.put('/', requireAdmin, async (req, res) => {
         settings.nepaliWallets = { esewa: {}, khalti: {}, imepay: {} };
       }
 
-      ['esewa', 'khalti', 'imepay'].forEach(key => {
+      ['esewa', 'khalti', 'imepay'].forEach((key) => {
         if (nepaliWallets[key]) {
           const current = settings.nepaliWallets[key] || {};
           const normalized = current.toObject ? current.toObject() : current;

@@ -12,7 +12,7 @@ async function requireAuth(req, res, next) {
   try {
     const JWT_SECRET = process.env.JWT_SECRET || 'zenrix-secret';
     const payload = jwt.verify(token, JWT_SECRET);
-    
+
     if (!payload || !payload.userId) {
       return res.status(401).json({ success: false, error: 'Invalid token' });
     }

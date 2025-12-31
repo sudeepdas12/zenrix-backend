@@ -1,101 +1,146 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Orders | Zenrix</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
     <custom-navbar></custom-navbar>
 
     <!-- Loading -->
     <div id="loadingState" class="flex items-center justify-center min-h-screen">
-        <div class="text-center">
-            <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-indigo-600 mx-auto mb-4"></div>
-            <p class="text-gray-600">Loading orders...</p>
-        </div>
+      <div class="text-center">
+        <div
+          class="animate-spin rounded-full h-16 w-16 border-b-4 border-indigo-600 mx-auto mb-4"
+        ></div>
+        <p class="text-gray-600">Loading orders...</p>
+      </div>
     </div>
 
     <!-- Not logged in -->
     <div id="notLoggedInState" class="hidden container mx-auto px-4 py-16">
-        <div class="max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8 text-center">
-            <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-user-lock text-3xl text-indigo-600"></i>
-            </div>
-            <h2 class="text-2xl font-bold text-gray-900 mb-2">Please log in</h2>
-            <p class="text-gray-600 mb-6">Sign in to view your orders and tracking</p>
-            <div class="space-y-3">
-                <a href="login.html" class="block w-full bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition">
-                    <i class="fas fa-sign-in-alt mr-2"></i> Log In
-                </a>
-                <a href="register.html" class="block w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 transition">
-                    <i class="fas fa-user-plus mr-2"></i> Create Account
-                </a>
-            </div>
+      <div class="max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8 text-center">
+        <div
+          class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4"
+        >
+          <i class="fas fa-user-lock text-3xl text-indigo-600"></i>
         </div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">Please log in</h2>
+        <p class="text-gray-600 mb-6">Sign in to view your orders and tracking</p>
+        <div class="space-y-3">
+          <a
+            href="login.html"
+            class="block w-full bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition"
+          >
+            <i class="fas fa-sign-in-alt mr-2"></i> Log In
+          </a>
+          <a
+            href="register.html"
+            class="block w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 transition"
+          >
+            <i class="fas fa-user-plus mr-2"></i> Create Account
+          </a>
+        </div>
+      </div>
     </div>
 
     <!-- Orders -->
     <main id="ordersContent" class="hidden container mx-auto px-4 py-10 space-y-6">
-        <header class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
-                <p class="text-sm text-indigo-600 font-semibold uppercase tracking-wide">Order Center</p>
-                <h1 class="text-3xl font-bold text-gray-900 mt-1">My Orders</h1>
-                <p class="text-gray-600">Track deliveries, review status, and download invoices</p>
-            </div>
-            <div class="flex items-center gap-3">
-                <a href="account.html" class="px-4 py-2 rounded-xl border border-gray-200 bg-white text-gray-800 font-semibold hover:border-indigo-200 hover:text-indigo-600 transition">
-                    <i class="fas fa-arrow-left mr-2"></i>Back to dashboard
-                </a>
-                <a href="cart.html" class="px-4 py-2 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition">
-                    <i class="fas fa-shopping-cart mr-2"></i>Go to cart
-                </a>
-            </div>
-        </header>
+      <header class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <p class="text-sm text-indigo-600 font-semibold uppercase tracking-wide">Order Center</p>
+          <h1 class="text-3xl font-bold text-gray-900 mt-1">My Orders</h1>
+          <p class="text-gray-600">Track deliveries, review status, and download invoices</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <a
+            href="account.html"
+            class="px-4 py-2 rounded-xl border border-gray-200 bg-white text-gray-800 font-semibold hover:border-indigo-200 hover:text-indigo-600 transition"
+          >
+            <i class="fas fa-arrow-left mr-2"></i>Back to dashboard
+          </a>
+          <a
+            href="cart.html"
+            class="px-4 py-2 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition"
+          >
+            <i class="fas fa-shopping-cart mr-2"></i>Go to cart
+          </a>
+        </div>
+      </header>
 
-        <!-- KPIs -->
-        <section class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-2xl p-4 shadow">
-                <p class="text-sm text-indigo-100">Total orders</p>
-                <p id="kpiTotal" class="text-3xl font-bold mt-1">0</p>
-            </div>
-            <div class="bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-2xl p-4 shadow">
-                <p class="text-sm text-amber-100">Pending</p>
-                <p id="kpiPending" class="text-3xl font-bold mt-1">0</p>
-            </div>
-            <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-2xl p-4 shadow">
-                <p class="text-sm text-emerald-100">Completed</p>
-                <p id="kpiCompleted" class="text-3xl font-bold mt-1">0</p>
-            </div>
-            <div class="bg-gradient-to-br from-rose-500 to-rose-600 text-white rounded-2xl p-4 shadow">
-                <p class="text-sm text-rose-100">Canceled</p>
-                <p id="kpiCanceled" class="text-3xl font-bold mt-1">0</p>
-            </div>
-        </section>
+      <!-- KPIs -->
+      <section class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div
+          class="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-2xl p-4 shadow"
+        >
+          <p class="text-sm text-indigo-100">Total orders</p>
+          <p id="kpiTotal" class="text-3xl font-bold mt-1">0</p>
+        </div>
+        <div
+          class="bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-2xl p-4 shadow"
+        >
+          <p class="text-sm text-amber-100">Pending</p>
+          <p id="kpiPending" class="text-3xl font-bold mt-1">0</p>
+        </div>
+        <div
+          class="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-2xl p-4 shadow"
+        >
+          <p class="text-sm text-emerald-100">Completed</p>
+          <p id="kpiCompleted" class="text-3xl font-bold mt-1">0</p>
+        </div>
+        <div class="bg-gradient-to-br from-rose-500 to-rose-600 text-white rounded-2xl p-4 shadow">
+          <p class="text-sm text-rose-100">Canceled</p>
+          <p id="kpiCanceled" class="text-3xl font-bold mt-1">0</p>
+        </div>
+      </section>
 
-        <!-- Filters -->
-        <section class="bg-white rounded-2xl shadow p-4 flex items-center gap-3 overflow-x-auto">
-            <button data-filter="all" class="filter-btn px-4 py-2 rounded-xl bg-indigo-600 text-white font-semibold shadow-sm">All</button>
-            <button data-filter="Pending" class="filter-btn px-4 py-2 rounded-xl bg-gray-100 text-gray-800 font-semibold">Pending</button>
-            <button data-filter="Completed" class="filter-btn px-4 py-2 rounded-xl bg-gray-100 text-gray-800 font-semibold">Completed</button>
-            <button data-filter="Canceled" class="filter-btn px-4 py-2 rounded-xl bg-gray-100 text-gray-800 font-semibold">Canceled</button>
-        </section>
+      <!-- Filters -->
+      <section class="bg-white rounded-2xl shadow p-4 flex items-center gap-3 overflow-x-auto">
+        <button
+          data-filter="all"
+          class="filter-btn px-4 py-2 rounded-xl bg-indigo-600 text-white font-semibold shadow-sm"
+        >
+          All
+        </button>
+        <button
+          data-filter="Pending"
+          class="filter-btn px-4 py-2 rounded-xl bg-gray-100 text-gray-800 font-semibold"
+        >
+          Pending
+        </button>
+        <button
+          data-filter="Completed"
+          class="filter-btn px-4 py-2 rounded-xl bg-gray-100 text-gray-800 font-semibold"
+        >
+          Completed
+        </button>
+        <button
+          data-filter="Canceled"
+          class="filter-btn px-4 py-2 rounded-xl bg-gray-100 text-gray-800 font-semibold"
+        >
+          Canceled
+        </button>
+      </section>
 
-        <!-- Orders list -->
-        <section class="bg-white rounded-2xl shadow p-5">
-            <div class="flex items-center justify-between mb-4">
-                <div>
-                    <h2 class="text-xl font-bold text-gray-900">Order history</h2>
-                    <p class="text-sm text-gray-500">Newest first</p>
-                </div>
-                <div class="text-sm text-gray-500" id="ordersCount">0 orders</div>
-            </div>
-            <div id="ordersList" class="divide-y">
-                <div class="py-10 text-center text-gray-500">No orders yet.</div>
-            </div>
-        </section>
+      <!-- Orders list -->
+      <section class="bg-white rounded-2xl shadow p-5">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-xl font-bold text-gray-900">Order history</h2>
+            <p class="text-sm text-gray-500">Newest first</p>
+          </div>
+          <div class="text-sm text-gray-500" id="ordersCount">0 orders</div>
+        </div>
+        <div id="ordersList" class="divide-y">
+          <div class="py-10 text-center text-gray-500">No orders yet.</div>
+        </div>
+      </section>
     </main>
 
     <custom-footer></custom-footer>
@@ -103,52 +148,66 @@
     <script src="components/navbar.js"></script>
     <script src="components/footer.js"></script>
     <script>
-        function getAuthToken() { return localStorage.getItem('userToken'); }
-        function isLoggedIn() { return !!getAuthToken(); }
+      function getAuthToken() {
+        return localStorage.getItem('userToken');
+      }
+      function isLoggedIn() {
+        return !!getAuthToken();
+      }
 
-        function setText(id, value) {
-            const el = document.getElementById(id);
-            if (el) el.textContent = value;
+      function setText(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+      }
+
+      function formatDate(dateStr) {
+        if (!dateStr) return '';
+        return new Date(dateStr).toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        });
+      }
+
+      function statusStyles(status) {
+        const map = {
+          Pending: { bg: 'bg-amber-100', text: 'text-amber-700', dot: 'bg-amber-500' },
+          Completed: { bg: 'bg-emerald-100', text: 'text-emerald-700', dot: 'bg-emerald-500' },
+          Canceled: { bg: 'bg-rose-100', text: 'text-rose-700', dot: 'bg-rose-500' },
+        };
+        return map[status] || { bg: 'bg-gray-100', text: 'text-gray-700', dot: 'bg-gray-400' };
+      }
+
+      async function fetchJson(url, options = {}) {
+        const res = await fetch(url, options);
+        return res.json();
+      }
+
+      function renderOrders(orders, filter = 'all') {
+        const list = document.getElementById('ordersList');
+        const filtered =
+          filter === 'all'
+            ? orders
+            : orders.filter((o) => (o.status || '').toLowerCase() === filter.toLowerCase());
+
+        if (!filtered.length) {
+          list.innerHTML =
+            '<div class="py-10 text-center text-gray-500">No orders in this view.</div>';
+          document.getElementById('ordersCount').textContent = '0 orders';
+          return;
         }
 
-        function formatDate(dateStr) {
-            if (!dateStr) return '';
-            return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-        }
+        document.getElementById('ordersCount').textContent =
+          `${filtered.length} ${filtered.length === 1 ? 'order' : 'orders'}`;
+        list.innerHTML = filtered
+          .map((order) => {
+            const styles = statusStyles(order.status);
+            const itemsCount = order.items ? order.items.length : 0;
+            const total = order.total || 0;
+            const created = formatDate(order.createdAt);
+            const orderIdShort = order._id ? `#${order._id.slice(-6)}` : '#—';
 
-        function statusStyles(status) {
-            const map = {
-                Pending: { bg: 'bg-amber-100', text: 'text-amber-700', dot: 'bg-amber-500' },
-                Completed: { bg: 'bg-emerald-100', text: 'text-emerald-700', dot: 'bg-emerald-500' },
-                Canceled: { bg: 'bg-rose-100', text: 'text-rose-700', dot: 'bg-rose-500' }
-            };
-            return map[status] || { bg: 'bg-gray-100', text: 'text-gray-700', dot: 'bg-gray-400' };
-        }
-
-        async function fetchJson(url, options = {}) {
-            const res = await fetch(url, options);
-            return res.json();
-        }
-
-        function renderOrders(orders, filter = 'all') {
-            const list = document.getElementById('ordersList');
-            const filtered = filter === 'all' ? orders : orders.filter(o => (o.status || '').toLowerCase() === filter.toLowerCase());
-
-            if (!filtered.length) {
-                list.innerHTML = '<div class="py-10 text-center text-gray-500">No orders in this view.</div>';
-                document.getElementById('ordersCount').textContent = '0 orders';
-                return;
-            }
-
-            document.getElementById('ordersCount').textContent = `${filtered.length} ${filtered.length === 1 ? 'order' : 'orders'}`;
-            list.innerHTML = filtered.map(order => {
-                const styles = statusStyles(order.status);
-                const itemsCount = order.items ? order.items.length : 0;
-                const total = order.total || 0;
-                const created = formatDate(order.createdAt);
-                const orderIdShort = order._id ? `#${order._id.slice(-6)}` : '#—';
-
-                return `
+            return `
                     <article class="py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                         <div class="flex items-start gap-3">
                             <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">${(orderIdShort || '#').replace('#', '')}</div>
@@ -166,66 +225,71 @@
                         </div>
                     </article>
                 `;
-            }).join('');
+          })
+          .join('');
+      }
+
+      async function loadOrders() {
+        const token = getAuthToken();
+        const headers = { Authorization: `Bearer ${token}` };
+
+        const [summaryRes, ordersRes] = await Promise.all([
+          fetchJson('/api/users/orders/summary', { headers }),
+          fetchJson('/api/users/orders', { headers }),
+        ]);
+
+        if (summaryRes.success) {
+          const s = summaryRes.data;
+          setText('kpiTotal', s.total || 0);
+          setText('kpiPending', s.pending || 0);
+          setText('kpiCompleted', s.completed || 0);
+          setText('kpiCanceled', s.canceled || 0);
         }
 
-        async function loadOrders() {
-            const token = getAuthToken();
-            const headers = { Authorization: `Bearer ${token}` };
+        if (ordersRes.success) {
+          window.__orders = ordersRes.data || [];
+          renderOrders(window.__orders);
+        } else {
+          throw new Error(ordersRes.error || 'Failed to load orders');
+        }
+      }
 
-            const [summaryRes, ordersRes] = await Promise.all([
-                fetchJson('/api/users/orders/summary', { headers }),
-                fetchJson('/api/users/orders', { headers })
-            ]);
+      document.addEventListener('DOMContentLoaded', async () => {
+        const loading = document.getElementById('loadingState');
+        const notLogged = document.getElementById('notLoggedInState');
+        const content = document.getElementById('ordersContent');
 
-            if (summaryRes.success) {
-                const s = summaryRes.data;
-                setText('kpiTotal', s.total || 0);
-                setText('kpiPending', s.pending || 0);
-                setText('kpiCompleted', s.completed || 0);
-                setText('kpiCanceled', s.canceled || 0);
-            }
-
-            if (ordersRes.success) {
-                window.__orders = ordersRes.data || [];
-                renderOrders(window.__orders);
-            } else {
-                throw new Error(ordersRes.error || 'Failed to load orders');
-            }
+        if (!isLoggedIn()) {
+          loading.classList.add('hidden');
+          notLogged.classList.remove('hidden');
+          return;
         }
 
-        document.addEventListener('DOMContentLoaded', async () => {
-            const loading = document.getElementById('loadingState');
-            const notLogged = document.getElementById('notLoggedInState');
-            const content = document.getElementById('ordersContent');
+        try {
+          await loadOrders();
+          loading.classList.add('hidden');
+          content.classList.remove('hidden');
+        } catch (err) {
+          console.error('Orders load error:', err);
+          loading.classList.add('hidden');
+          notLogged.classList.remove('hidden');
+        }
 
-            if (!isLoggedIn()) {
-                loading.classList.add('hidden');
-                notLogged.classList.remove('hidden');
-                return;
-            }
-
-            try {
-                await loadOrders();
-                loading.classList.add('hidden');
-                content.classList.remove('hidden');
-            } catch (err) {
-                console.error('Orders load error:', err);
-                loading.classList.add('hidden');
-                notLogged.classList.remove('hidden');
-            }
-
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('bg-indigo-600', 'text-white'));
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('bg-gray-100', 'text-gray-800'));
-                    btn.classList.add('bg-indigo-600', 'text-white');
-                    btn.classList.remove('bg-gray-100', 'text-gray-800');
-                    const filter = btn.getAttribute('data-filter');
-                    renderOrders(window.__orders || [], filter);
-                });
-            });
+        document.querySelectorAll('.filter-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            document
+              .querySelectorAll('.filter-btn')
+              .forEach((b) => b.classList.remove('bg-indigo-600', 'text-white'));
+            document
+              .querySelectorAll('.filter-btn')
+              .forEach((b) => b.classList.add('bg-gray-100', 'text-gray-800'));
+            btn.classList.add('bg-indigo-600', 'text-white');
+            btn.classList.remove('bg-gray-100', 'text-gray-800');
+            const filter = btn.getAttribute('data-filter');
+            renderOrders(window.__orders || [], filter);
+          });
         });
+      });
     </script>
-</body>
+  </body>
 </html>

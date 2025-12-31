@@ -1,153 +1,219 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cart | Zenrix</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <script src="script.js" defer></script>
-</head>
-<body class="bg-slate-950 text-slate-100 min-h-screen">
+  </head>
+  <body class="bg-slate-950 text-slate-100 min-h-screen">
     <custom-navbar></custom-navbar>
 
     <!-- Loading -->
-    <div id="loadingState" class="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900">
-        <div class="text-center">
-            <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-indigo-400 mx-auto mb-4"></div>
-            <p class="text-slate-200">Loading your cart...</p>
-        </div>
+    <div
+      id="loadingState"
+      class="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900"
+    >
+      <div class="text-center">
+        <div
+          class="animate-spin rounded-full h-16 w-16 border-b-4 border-indigo-400 mx-auto mb-4"
+        ></div>
+        <p class="text-slate-200">Loading your cart...</p>
+      </div>
     </div>
 
     <!-- Not logged in -->
     <div id="notLoggedInState" class="hidden container mx-auto px-4 py-16">
-        <div class="max-w-md mx-auto bg-white/5 border border-white/10 rounded-2xl shadow-xl p-8 text-center backdrop-blur">
-            <div class="w-20 h-20 bg-indigo-500/20 border border-indigo-400/40 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-user-lock text-3xl text-indigo-100"></i>
-            </div>
-            <h2 class="text-2xl font-bold text-white mb-2">Please log in</h2>
-            <p class="text-slate-300 mb-6">Sign in to see and manage your cart.</p>
-            <div class="space-y-3">
-                <a href="login.html" class="block w-full bg-white text-slate-900 px-6 py-3 rounded-xl font-semibold shadow hover:-translate-y-0.5 transition">
-                    <i class="fas fa-sign-in-alt mr-2"></i> Log In
-                </a>
-                <a href="register.html" class="block w-full bg-white/10 border border-white/20 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/15 transition">
-                    <i class="fas fa-user-plus mr-2"></i> Create Account
-                </a>
-            </div>
+      <div
+        class="max-w-md mx-auto bg-white/5 border border-white/10 rounded-2xl shadow-xl p-8 text-center backdrop-blur"
+      >
+        <div
+          class="w-20 h-20 bg-indigo-500/20 border border-indigo-400/40 rounded-full flex items-center justify-center mx-auto mb-4"
+        >
+          <i class="fas fa-user-lock text-3xl text-indigo-100"></i>
         </div>
+        <h2 class="text-2xl font-bold text-white mb-2">Please log in</h2>
+        <p class="text-slate-300 mb-6">Sign in to see and manage your cart.</p>
+        <div class="space-y-3">
+          <a
+            href="login.html"
+            class="block w-full bg-white text-slate-900 px-6 py-3 rounded-xl font-semibold shadow hover:-translate-y-0.5 transition"
+          >
+            <i class="fas fa-sign-in-alt mr-2"></i> Log In
+          </a>
+          <a
+            href="register.html"
+            class="block w-full bg-white/10 border border-white/20 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/15 transition"
+          >
+            <i class="fas fa-user-plus mr-2"></i> Create Account
+          </a>
+        </div>
+      </div>
     </div>
 
     <!-- Cart content -->
     <main id="cartContent" class="hidden">
-        <section class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 py-12">
-            <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.35),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(236,72,153,0.25),transparent_40%)]"></div>
-            <div class="container mx-auto px-4 relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-                <div class="space-y-3 max-w-2xl">
-                    <p class="text-sm uppercase tracking-[0.35em] text-indigo-100">Your cart</p>
-                    <h1 class="text-3xl md:text-4xl font-bold">Ready to check out?</h1>
-                    <p class="text-slate-200 text-lg">Review items, adjust quantities, and place your order with a secure checkout.</p>
-                    <div class="flex flex-wrap gap-3">
-                        <a href="products.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white text-slate-900 font-semibold shadow hover:-translate-y-0.5 transition"><i class="fas fa-arrow-left"></i>Continue shopping</a>
-                        <a href="orders.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/20 text-white font-semibold hover:bg-white/10 transition"><i class="fas fa-box"></i>View orders</a>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-4 w-full lg:w-[420px]">
-                    <div class="bg-white/5 border border-white/10 rounded-2xl p-4 shadow">
-                        <p class="text-xs uppercase tracking-[0.2em] text-indigo-100">Items</p>
-                        <p id="heroItemCount" class="text-3xl font-bold mt-2">0</p>
-                        <p class="text-sm text-slate-300">In your cart</p>
-                    </div>
-                    <div class="bg-white/5 border border-white/10 rounded-2xl p-4 shadow">
-                        <p class="text-xs uppercase tracking-[0.2em] text-indigo-100">Total</p>
-                        <p id="heroTotal" class="text-3xl font-bold mt-2">NPR 0.00</p>
-                        <p class="text-sm text-slate-300">Estimated</p>
-                    </div>
-                    <div class="bg-white/5 border border-white/10 rounded-2xl p-4 shadow col-span-2">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-100"><i class="fas fa-shield-alt"></i></div>
-                            <div>
-                                <p class="text-sm text-indigo-100">Secure checkout</p>
-                                <p class="text-lg font-semibold text-white">Encrypted payment, free shipping.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <section
+        class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 py-12"
+      >
+        <div
+          class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.35),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(236,72,153,0.25),transparent_40%)]"
+        ></div>
+        <div
+          class="container mx-auto px-4 relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between"
+        >
+          <div class="space-y-3 max-w-2xl">
+            <p class="text-sm uppercase tracking-[0.35em] text-indigo-100">Your cart</p>
+            <h1 class="text-3xl md:text-4xl font-bold">Ready to check out?</h1>
+            <p class="text-slate-200 text-lg">
+              Review items, adjust quantities, and place your order with a secure checkout.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <a
+                href="products.html"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white text-slate-900 font-semibold shadow hover:-translate-y-0.5 transition"
+                ><i class="fas fa-arrow-left"></i>Continue shopping</a
+              >
+              <a
+                href="orders.html"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/20 text-white font-semibold hover:bg-white/10 transition"
+                ><i class="fas fa-box"></i>View orders</a
+              >
             </div>
-        </section>
-
-        <section class="container mx-auto px-4 py-10 space-y-6">
-            <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-                <div class="xl:col-span-2 space-y-4" id="cartItems">
-                    <div class="bg-white/5 border border-white/10 rounded-2xl shadow p-6 text-center text-slate-300">
-                        <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-indigo-100">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <p class="font-semibold text-white">Your cart is empty</p>
-                        <p class="text-sm text-slate-400 mt-1">Add items to see them here.</p>
-                        <a href="products.html" class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-500 text-white font-semibold hover:-translate-y-0.5 transition">
-                            Browse products
-                        </a>
-                    </div>
-                </div>
-
-                <aside class="space-y-4">
-                    <div class="bg-white/5 border border-white/10 rounded-2xl shadow p-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <h2 class="text-xl font-bold text-white">Order summary</h2>
-                                <p class="text-sm text-slate-300">Shipping is free; taxes included.</p>
-                            </div>
-                            <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-100 text-xs font-semibold">Secure</span>
-                        </div>
-                        <div class="space-y-3 text-slate-200">
-                            <div class="flex items-center justify-between">
-                                <span>Items</span>
-                                <span id="summaryCount">0</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span>Subtotal</span>
-                                <span id="summarySubtotal">NPR 0.00</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span>Shipping</span>
-                                <span class="text-emerald-200 font-semibold">Free</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span>Tax (est.)</span>
-                                <span class="text-slate-400">Included</span>
-                            </div>
-                            <div class="border-t border-white/10 pt-4 flex items-center justify-between font-bold text-lg text-white">
-                                <span>Total</span>
-                                <span id="summaryTotal">NPR 0.00</span>
-                            </div>
-                        </div>
-                        <button id="checkoutBtn" class="mt-6 w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-3 rounded-xl font-semibold shadow hover:-translate-y-0.5 transition disabled:opacity-60 disabled:cursor-not-allowed">
-                            <i class="fas fa-lock mr-2"></i>Secure checkout
-                        </button>
-                        <p class="text-xs text-slate-400 mt-2 text-center">Review your order before paying.</p>
-                    </div>
-
-                    <div class="bg-white/5 border border-white/10 rounded-2xl shadow p-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="font-semibold text-white">Have a coupon?</h3>
-                            <span class="text-xs text-slate-400">Coming soon</span>
-                        </div>
-                        <div class="flex gap-2">
-                            <input id="couponInput" type="text" placeholder="Enter code" class="flex-grow rounded-xl px-4 py-2 bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400">
-                            <button class="px-4 py-2 rounded-xl bg-white/10 border border-white/15 text-white font-semibold">Apply</button>
-                        </div>
-                        <p class="text-xs text-slate-400 mt-2">We'll notify you when coupons are available.</p>
-                    </div>
-                </aside>
+          </div>
+          <div class="grid grid-cols-2 gap-4 w-full lg:w-[420px]">
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-4 shadow">
+              <p class="text-xs uppercase tracking-[0.2em] text-indigo-100">Items</p>
+              <p id="heroItemCount" class="text-3xl font-bold mt-2">0</p>
+              <p class="text-sm text-slate-300">In your cart</p>
             </div>
-        </section>
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-4 shadow">
+              <p class="text-xs uppercase tracking-[0.2em] text-indigo-100">Total</p>
+              <p id="heroTotal" class="text-3xl font-bold mt-2">NPR 0.00</p>
+              <p class="text-sm text-slate-300">Estimated</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-4 shadow col-span-2">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-lg bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-100"
+                >
+                  <i class="fas fa-shield-alt"></i>
+                </div>
+                <div>
+                  <p class="text-sm text-indigo-100">Secure checkout</p>
+                  <p class="text-lg font-semibold text-white">Encrypted payment, free shipping.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container mx-auto px-4 py-10 space-y-6">
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          <div class="xl:col-span-2 space-y-4" id="cartItems">
+            <div
+              class="bg-white/5 border border-white/10 rounded-2xl shadow p-6 text-center text-slate-300"
+            >
+              <div
+                class="w-12 h-12 mx-auto mb-3 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-indigo-100"
+              >
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              <p class="font-semibold text-white">Your cart is empty</p>
+              <p class="text-sm text-slate-400 mt-1">Add items to see them here.</p>
+              <a
+                href="products.html"
+                class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-500 text-white font-semibold hover:-translate-y-0.5 transition"
+              >
+                Browse products
+              </a>
+            </div>
+          </div>
+
+          <aside class="space-y-4">
+            <div class="bg-white/5 border border-white/10 rounded-2xl shadow p-6">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h2 class="text-xl font-bold text-white">Order summary</h2>
+                  <p class="text-sm text-slate-300">Shipping is free; taxes included.</p>
+                </div>
+                <span
+                  class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-100 text-xs font-semibold"
+                  >Secure</span
+                >
+              </div>
+              <div class="space-y-3 text-slate-200">
+                <div class="flex items-center justify-between">
+                  <span>Items</span>
+                  <span id="summaryCount">0</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Subtotal</span>
+                  <span id="summarySubtotal">NPR 0.00</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Shipping</span>
+                  <span class="text-emerald-200 font-semibold">Free</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Tax (est.)</span>
+                  <span class="text-slate-400">Included</span>
+                </div>
+                <div
+                  class="border-t border-white/10 pt-4 flex items-center justify-between font-bold text-lg text-white"
+                >
+                  <span>Total</span>
+                  <span id="summaryTotal">NPR 0.00</span>
+                </div>
+              </div>
+              <button
+                id="checkoutBtn"
+                class="mt-6 w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-3 rounded-xl font-semibold shadow hover:-translate-y-0.5 transition disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                <i class="fas fa-lock mr-2"></i>Secure checkout
+              </button>
+              <p class="text-xs text-slate-400 mt-2 text-center">
+                Review your order before paying.
+              </p>
+            </div>
+
+            <div class="bg-white/5 border border-white/10 rounded-2xl shadow p-6">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-semibold text-white">Have a coupon?</h3>
+                <span class="text-xs text-slate-400">Coming soon</span>
+              </div>
+              <div class="flex gap-2">
+                <input
+                  id="couponInput"
+                  type="text"
+                  placeholder="Enter code"
+                  class="flex-grow rounded-xl px-4 py-2 bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400"
+                />
+                <button
+                  class="px-4 py-2 rounded-xl bg-white/10 border border-white/15 text-white font-semibold"
+                >
+                  Apply
+                </button>
+              </div>
+              <p class="text-xs text-slate-400 mt-2">
+                We'll notify you when coupons are available.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
     </main>
 
     <custom-footer></custom-footer>
 
     <script src="components/navbar.js"></script>
     <script src="components/footer.js"></script>
-</body>
+  </body>
 </html>

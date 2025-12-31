@@ -21,14 +21,18 @@ test.describe('Cart E2E', () => {
     await page.click('#addToCart');
 
     // Check navbar cart count on same page (access shadow DOM)
-    const count = await page.locator('custom-navbar').evaluate((el) => el.shadowRoot.getElementById('cartCount').textContent);
+    const count = await page
+      .locator('custom-navbar')
+      .evaluate((el) => el.shadowRoot.getElementById('cartCount').textContent);
     expect(Number(count)).toBeGreaterThan(0);
 
     // Open a second tab and check the count syncs
     const page2 = await context.newPage();
     await page2.goto('/index.html');
     await page2.waitForTimeout(500);
-    const count2 = await page2.locator('custom-navbar').evaluate((el) => el.shadowRoot.getElementById('cartCount').textContent);
+    const count2 = await page2
+      .locator('custom-navbar')
+      .evaluate((el) => el.shadowRoot.getElementById('cartCount').textContent);
     expect(Number(count2)).toBeGreaterThan(0);
   });
 });

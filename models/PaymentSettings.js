@@ -5,42 +5,51 @@ const DEFAULT_BANK_DETAILS = {
   accountNumber: '1234567890',
   bankName: 'NMB Bank',
   branch: 'Kathmandu',
-  swiftCode: 'NMBLNPKA'
+  swiftCode: 'NMBLNPKA',
 };
 
 const DEFAULT_WALLET = {
   enabled: true,
   walletNumber: '98XXXXXXXXX',
   qrImageUrl: '',
-  instructions: ''
+  instructions: '',
 };
 
-const nepaliWalletSchema = new mongoose.Schema({
-  enabled: { type: Boolean, default: DEFAULT_WALLET.enabled },
-  walletNumber: { type: String, default: DEFAULT_WALLET.walletNumber },
-  qrImageUrl: { type: String, default: DEFAULT_WALLET.qrImageUrl },
-  instructions: { type: String, default: DEFAULT_WALLET.instructions }
-}, { _id: false });
+const nepaliWalletSchema = new mongoose.Schema(
+  {
+    enabled: { type: Boolean, default: DEFAULT_WALLET.enabled },
+    walletNumber: { type: String, default: DEFAULT_WALLET.walletNumber },
+    qrImageUrl: { type: String, default: DEFAULT_WALLET.qrImageUrl },
+    instructions: { type: String, default: DEFAULT_WALLET.instructions },
+  },
+  { _id: false }
+);
 
-const paymentSettingsSchema = new mongoose.Schema({
-  codEnabled: { type: Boolean, default: true },
-  bankEnabled: { type: Boolean, default: true },
-  bankDetails: {
-    accountName: { type: String, default: DEFAULT_BANK_DETAILS.accountName },
-    accountNumber: { type: String, default: DEFAULT_BANK_DETAILS.accountNumber },
-    bankName: { type: String, default: DEFAULT_BANK_DETAILS.bankName },
-    branch: { type: String, default: DEFAULT_BANK_DETAILS.branch },
-    swiftCode: { type: String, default: DEFAULT_BANK_DETAILS.swiftCode }
+const paymentSettingsSchema = new mongoose.Schema(
+  {
+    codEnabled: { type: Boolean, default: true },
+    bankEnabled: { type: Boolean, default: true },
+    bankDetails: {
+      accountName: { type: String, default: DEFAULT_BANK_DETAILS.accountName },
+      accountNumber: { type: String, default: DEFAULT_BANK_DETAILS.accountNumber },
+      bankName: { type: String, default: DEFAULT_BANK_DETAILS.bankName },
+      branch: { type: String, default: DEFAULT_BANK_DETAILS.branch },
+      swiftCode: { type: String, default: DEFAULT_BANK_DETAILS.swiftCode },
+    },
+    qrImageUrl: { type: String, default: '' },
+    instructions: {
+      type: String,
+      default: 'Upload the payment receipt to support@zenrix.com.np for faster verification.',
+    },
+    nepaliWallets: {
+      esewa: { type: nepaliWalletSchema, default: () => ({ ...DEFAULT_WALLET }) },
+      khalti: { type: nepaliWalletSchema, default: () => ({ ...DEFAULT_WALLET }) },
+      imepay: { type: nepaliWalletSchema, default: () => ({ ...DEFAULT_WALLET }) },
+    },
+    updatedBy: { type: String, default: '' },
   },
-  qrImageUrl: { type: String, default: '' },
-  instructions: { type: String, default: 'Upload the payment receipt to support@zenrix.com.np for faster verification.' },
-  nepaliWallets: {
-    esewa: { type: nepaliWalletSchema, default: () => ({ ...DEFAULT_WALLET }) },
-    khalti: { type: nepaliWalletSchema, default: () => ({ ...DEFAULT_WALLET }) },
-    imepay: { type: nepaliWalletSchema, default: () => ({ ...DEFAULT_WALLET }) }
-  },
-  updatedBy: { type: String, default: '' }
-}, { timestamps: true });
+  { timestamps: true }
+);
 
 paymentSettingsSchema.statics.getOrCreate = async function () {
   let settings = await this.findOne();

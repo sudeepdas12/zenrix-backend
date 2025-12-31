@@ -1,7 +1,7 @@
 class CustomNavbar extends HTMLElement {
-    connectedCallback() {
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `
+  connectedCallback() {
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.innerHTML = `
             <style>
                 :host {
                     display: block;
@@ -238,138 +238,149 @@ class CustomNavbar extends HTMLElement {
             </div>
         `;
 
-        // Try to fetch remote navbar content (CMS-managed) and replace nav-links
-        (async () => {
-            try {
-                const API = window.API_URL || (location.origin + '/api');
-                const res = await fetch(`${API}/components/slug/navbar`);
-                const json = await res.json();
-                if (json.success && json.data && json.data.html) {
-                    const el = this.shadowRoot.querySelector('.nav-links');
-                    if (el) el.innerHTML = json.data.html;
-                }
-            } catch (e) {
-                // silent fallback to built-in links
-            }
-        })();
-
-        // Mobile toggle
-        const panel = this.shadowRoot.querySelector('.mobile-panel');
-        const toggleBtn = this.shadowRoot.querySelector('.mobile-menu-btn');
-        if (toggleBtn && panel) {
-            toggleBtn.addEventListener('click', () => {
-                const isOpen = panel.classList.contains('open');
-                panel.classList.toggle('open', !isOpen);
-            });
+    // Try to fetch remote navbar content (CMS-managed) and replace nav-links
+    (async () => {
+      try {
+        const API = window.API_URL || location.origin + '/api';
+        const res = await fetch(`${API}/components/slug/navbar`);
+        const json = await res.json();
+        if (json.success && json.data && json.data.html) {
+          const el = this.shadowRoot.querySelector('.nav-links');
+          if (el) el.innerHTML = json.data.html;
         }
+      } catch (e) {
+        // silent fallback to built-in links
+      }
+    })();
 
-        // Theme toggle
-        const themeBtn = this.shadowRoot.getElementById('themeToggleBtn');
-        const iconSpan = themeBtn?.querySelector('.theme-icon');
-        const labelSpan = themeBtn?.querySelector('.theme-label');
-
-        const getCurrentTheme = () => {
-            const stored = localStorage.getItem('zenrix_theme');
-            if (stored === 'light' || stored === 'dark') return stored;
-            return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-        };
-
-        const setTheme = (theme) => {
-            const next = theme === 'light' ? 'theme-light' : 'theme-dark';
-            document.documentElement.classList.remove('theme-light', 'theme-dark');
-            document.documentElement.classList.add(next);
-            localStorage.setItem('zenrix_theme', theme === 'light' ? 'light' : 'dark');
-            window.dispatchEvent(new CustomEvent('zenrix-theme-changed', { detail: { theme } }));
-        };
-
-        const syncThemeButton = (theme) => {
-            if (!iconSpan || !labelSpan) return;
-            if (theme === 'light') {
-                iconSpan.textContent = '☀️';
-                labelSpan.textContent = 'Light';
-            } else {
-                iconSpan.textContent = '🌙';
-                labelSpan.textContent = 'Dark';
-            }
-        };
-
-        if (themeBtn) {
-            syncThemeButton(getCurrentTheme());
-            themeBtn.addEventListener('click', () => {
-                const current = getCurrentTheme();
-                const next = current === 'light' ? 'dark' : 'light';
-                // Apply immediately in case global listener is missing
-                setTheme(next);
-                // Notify any global listeners (script.js) to stay in sync
-                window.dispatchEvent(new CustomEvent('zenrix-theme-toggle', { detail: { theme: next }, bubbles: true, composed: true }));
-            });
-            window.addEventListener('zenrix-theme-changed', (e) => {
-                syncThemeButton(e.detail?.theme || getCurrentTheme());
-            });
-        }
-
-        // Add a global accessible live region for screen readers if not present
-        if (!document.getElementById('zenrix-cart-live')) {
-            const live = document.createElement('div');
-            live.id = 'zenrix-cart-live';
-            live.setAttribute('role', 'status');
-            live.setAttribute('aria-live', 'polite');
-            live.setAttribute('aria-atomic', 'true');
-            // visually hidden styles
-            live.style.position = 'absolute';
-            live.style.width = '1px';
-            live.style.height = '1px';
-            live.style.padding = '0';
-            live.style.margin = '-1px';
-            live.style.overflow = 'hidden';
-            live.style.clip = 'rect(0 0 0 0)';
-            live.style.whiteSpace = 'nowrap';
-            live.style.border = '0';
-            document.body.appendChild(live);
-        }
-
-        // Update count immediately
-        this.updateCartCount = () => {
-            try {
-                const cart = JSON.parse(localStorage.getItem('zenrix_cart')) || [];
-                const total = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
-                const el = this.shadowRoot.getElementById('cartCount');
-                if (el) {
-                    // Animate if count increased
-                    const prev = this._lastCount || 0;
-                    el.textContent = total;
-                    el.style.display = total > 0 ? 'flex' : 'none';
-                    if (total > prev) {
-                        el.classList.remove('pop');
-                        // force reflow
-                        void el.offsetWidth;
-                        el.classList.add('pop');
-                        setTimeout(() => el.classList.remove('pop'), 300);
-                    }
-                    this._lastCount = total;
-                }
-
-                // Update global live region for screen readers
-                const live = document.getElementById('zenrix-cart-live');
-                if (live) {
-                    live.textContent = total > 0 ? `Cart has ${total} item${total === 1 ? '' : 's'}` : 'Cart is empty';
-                }
-            } catch (e) {
-                // ignore
-            }
-        };
-
-        // Bind and initialize
-        this._boundUpdate = this.updateCartCount.bind(this);
-        window.addEventListener('cartUpdated', this._boundUpdate);
-        window.addEventListener('storage', (e) => { if (e.key === 'zenrix_cart') this._boundUpdate(); });
-        this._lastCount = 0;
-        this._boundUpdate();
+    // Mobile toggle
+    const panel = this.shadowRoot.querySelector('.mobile-panel');
+    const toggleBtn = this.shadowRoot.querySelector('.mobile-menu-btn');
+    if (toggleBtn && panel) {
+      toggleBtn.addEventListener('click', () => {
+        const isOpen = panel.classList.contains('open');
+        panel.classList.toggle('open', !isOpen);
+      });
     }
 
-    disconnectedCallback() {
-        window.removeEventListener('cartUpdated', this._boundUpdate);
+    // Theme toggle
+    const themeBtn = this.shadowRoot.getElementById('themeToggleBtn');
+    const iconSpan = themeBtn?.querySelector('.theme-icon');
+    const labelSpan = themeBtn?.querySelector('.theme-label');
+
+    const getCurrentTheme = () => {
+      const stored = localStorage.getItem('zenrix_theme');
+      if (stored === 'light' || stored === 'dark') return stored;
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
+        ? 'light'
+        : 'dark';
+    };
+
+    const setTheme = (theme) => {
+      const next = theme === 'light' ? 'theme-light' : 'theme-dark';
+      document.documentElement.classList.remove('theme-light', 'theme-dark');
+      document.documentElement.classList.add(next);
+      localStorage.setItem('zenrix_theme', theme === 'light' ? 'light' : 'dark');
+      window.dispatchEvent(new CustomEvent('zenrix-theme-changed', { detail: { theme } }));
+    };
+
+    const syncThemeButton = (theme) => {
+      if (!iconSpan || !labelSpan) return;
+      if (theme === 'light') {
+        iconSpan.textContent = '☀️';
+        labelSpan.textContent = 'Light';
+      } else {
+        iconSpan.textContent = '🌙';
+        labelSpan.textContent = 'Dark';
+      }
+    };
+
+    if (themeBtn) {
+      syncThemeButton(getCurrentTheme());
+      themeBtn.addEventListener('click', () => {
+        const current = getCurrentTheme();
+        const next = current === 'light' ? 'dark' : 'light';
+        // Apply immediately in case global listener is missing
+        setTheme(next);
+        // Notify any global listeners (script.js) to stay in sync
+        window.dispatchEvent(
+          new CustomEvent('zenrix-theme-toggle', {
+            detail: { theme: next },
+            bubbles: true,
+            composed: true,
+          })
+        );
+      });
+      window.addEventListener('zenrix-theme-changed', (e) => {
+        syncThemeButton(e.detail?.theme || getCurrentTheme());
+      });
     }
+
+    // Add a global accessible live region for screen readers if not present
+    if (!document.getElementById('zenrix-cart-live')) {
+      const live = document.createElement('div');
+      live.id = 'zenrix-cart-live';
+      live.setAttribute('role', 'status');
+      live.setAttribute('aria-live', 'polite');
+      live.setAttribute('aria-atomic', 'true');
+      // visually hidden styles
+      live.style.position = 'absolute';
+      live.style.width = '1px';
+      live.style.height = '1px';
+      live.style.padding = '0';
+      live.style.margin = '-1px';
+      live.style.overflow = 'hidden';
+      live.style.clip = 'rect(0 0 0 0)';
+      live.style.whiteSpace = 'nowrap';
+      live.style.border = '0';
+      document.body.appendChild(live);
+    }
+
+    // Update count immediately
+    this.updateCartCount = () => {
+      try {
+        const cart = JSON.parse(localStorage.getItem('zenrix_cart')) || [];
+        const total = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+        const el = this.shadowRoot.getElementById('cartCount');
+        if (el) {
+          // Animate if count increased
+          const prev = this._lastCount || 0;
+          el.textContent = total;
+          el.style.display = total > 0 ? 'flex' : 'none';
+          if (total > prev) {
+            el.classList.remove('pop');
+            // force reflow
+            void el.offsetWidth;
+            el.classList.add('pop');
+            setTimeout(() => el.classList.remove('pop'), 300);
+          }
+          this._lastCount = total;
+        }
+
+        // Update global live region for screen readers
+        const live = document.getElementById('zenrix-cart-live');
+        if (live) {
+          live.textContent =
+            total > 0 ? `Cart has ${total} item${total === 1 ? '' : 's'}` : 'Cart is empty';
+        }
+      } catch (e) {
+        // ignore
+      }
+    };
+
+    // Bind and initialize
+    this._boundUpdate = this.updateCartCount.bind(this);
+    window.addEventListener('cartUpdated', this._boundUpdate);
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'zenrix_cart') this._boundUpdate();
+    });
+    this._lastCount = 0;
+    this._boundUpdate();
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('cartUpdated', this._boundUpdate);
+  }
 }
 
 customElements.define('custom-navbar', CustomNavbar);

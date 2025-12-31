@@ -1,7 +1,7 @@
 class CustomFooter extends HTMLElement {
-    connectedCallback() {
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = `
+  connectedCallback() {
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.innerHTML = `
             <style>
                 :host {
                     display: block;
@@ -321,28 +321,28 @@ class CustomFooter extends HTMLElement {
             </div>
         `;
 
-        // Replace footer HTML from CMS if available
-        (async () => {
-            try {
-                const API = window.API_URL || (location.origin + '/api');
-                const res = await fetch(`${API}/components/slug/footer`);
-                const json = await res.json();
-                if (json.success && json.data && json.data.html) {
-                    // Merge provided footer html, but keep only the CTA row to avoid showing logo/tagline
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(json.data.html, 'text/html');
-                    const container = this.shadowRoot.querySelector('.footer-about');
-                    const ctaRow = container?.querySelector('.cta-row');
-                    if (container && ctaRow) {
-                        container.innerHTML = '';
-                        container.appendChild(ctaRow);
-                    }
-                }
-            } catch (e) {
-                // ignore - fallback to built-in footer
-            }
-        })();
-    }
+    // Replace footer HTML from CMS if available
+    (async () => {
+      try {
+        const API = window.API_URL || location.origin + '/api';
+        const res = await fetch(`${API}/components/slug/footer`);
+        const json = await res.json();
+        if (json.success && json.data && json.data.html) {
+          // Merge provided footer html, but keep only the CTA row to avoid showing logo/tagline
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(json.data.html, 'text/html');
+          const container = this.shadowRoot.querySelector('.footer-about');
+          const ctaRow = container?.querySelector('.cta-row');
+          if (container && ctaRow) {
+            container.innerHTML = '';
+            container.appendChild(ctaRow);
+          }
+        }
+      } catch (e) {
+        // ignore - fallback to built-in footer
+      }
+    })();
+  }
 }
 
 customElements.define('custom-footer', CustomFooter);

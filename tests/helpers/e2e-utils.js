@@ -71,5 +71,5 @@ module.exports = {
   ensureTmpDir,
   writeDiagnosticScreenshot,
   startTracing,
-  stopTracing
+  stopTracing,
 };

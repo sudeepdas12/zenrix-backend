@@ -5,31 +5,43 @@ const multer = require('multer');
 const { requireAdmin } = require('../middleware/auth');
 
 // Configure multer for file uploads (5MB limit)
-const upload = multer({ 
+const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
   fileFilter: (req, file, cb) => {
-    const allowedMimes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    const allowedMimes = [
+      'application/pdf',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    ];
     if (allowedMimes.includes(file.mimetype)) {
       cb(null, true);
     } else {
       cb(new Error('Only PDF, DOC, and DOCX files are allowed'), false);
     }
-  }
+  },
 });
 
 // Career model
 const careerSchema = new mongoose.Schema({
   title: { type: String, required: true, trim: true },
   description: { type: String, required: true },
-  department: { type: String, required: true, enum: ['Engineering', 'Design', 'Sales', 'Marketing', 'HR', 'Operations', 'Support'] },
+  department: {
+    type: String,
+    required: true,
+    enum: ['Engineering', 'Design', 'Sales', 'Marketing', 'HR', 'Operations', 'Support'],
+  },
   location: { type: String, required: true },
-  type: { type: String, enum: ['Full-time', 'Part-time', 'Contract', 'Freelance'], default: 'Full-time' },
+  type: {
+    type: String,
+    enum: ['Full-time', 'Part-time', 'Contract', 'Freelance'],
+    default: 'Full-time',
+  },
   salary: { min: Number, max: Number, currency: { type: String, default: 'NPR' } },
   requirements: [String],
   benefits: [String],
   published: { type: Boolean, default: true },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
 });
 
 const Career = mongoose.model('Career', careerSchema);
@@ -45,8 +57,12 @@ const applicationSchema = new mongoose.Schema({
   resumeMimeType: String,
   resumeData: Buffer,
   coverLetter: String,
-  status: { type: String, enum: ['submitted', 'reviewing', 'shortlisted', 'rejected', 'hired'], default: 'submitted' },
-  appliedAt: { type: Date, default: Date.now }
+  status: {
+    type: String,
+    enum: ['submitted', 'reviewing', 'shortlisted', 'rejected', 'hired'],
+    default: 'submitted',
+  },
+  appliedAt: { type: Date, default: Date.now },
 });
 
 const Application = mongoose.model('Application', applicationSchema);
@@ -96,7 +112,10 @@ router.post('/', requireAdmin, async (req, res) => {
 // Update career (admin)
 router.put('/:id', requireAdmin, async (req, res) => {
   try {
-    const career = await Career.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const career = await Career.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
     if (!career) return res.status(404).json({ success: false, error: 'Career not found' });
     res.json({ success: true, data: career });
   } catch (error) {
@@ -132,21 +151,24 @@ router.post('/:id/apply', upload.single('resume'), async (req, res) => {
       resumeMimeType: req.file.mimetype,
       resumeData: req.file.buffer,
       coverLetter: req.body.coverLetter || '',
-      status: 'submitted'
+      status: 'submitted',
     });
-    
+
     await application.save();
-    res.status(201).json({ success: true, data: { 
-      _id: application._id,
-      firstName: application.firstName,
-      lastName: application.lastName,
-      email: application.email,
-      phone: application.phone,
-      resumeFileName: application.resumeFileName,
-      coverLetter: application.coverLetter,
-      status: application.status,
-      appliedAt: application.appliedAt
-    }});
+    res.status(201).json({
+      success: true,
+      data: {
+        _id: application._id,
+        firstName: application.firstName,
+        lastName: application.lastName,
+        email: application.email,
+        phone: application.phone,
+        resumeFileName: application.resumeFileName,
+        coverLetter: application.coverLetter,
+        status: application.status,
+        appliedAt: application.appliedAt,
+      },
+    });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }
@@ -165,7 +187,10 @@ router.get('/:id/applications', requireAdmin, async (req, res) => {
 // Download resume for an application (admin)
 router.get('/:jobId/applications/:appId/resume', requireAdmin, async (req, res) => {
   try {
-    const application = await Application.findOne({ _id: req.params.appId, jobId: req.params.jobId });
+    const application = await Application.findOne({
+      _id: req.params.appId,
+      jobId: req.params.jobId,
+    });
     if (!application || !application.resumeData) {
       return res.status(404).json({ success: false, error: 'Resume not found' });
     }
@@ -184,8 +209,13 @@ router.get('/:jobId/applications/:appId/resume', requireAdmin, async (req, res) 
 // Update application status (admin)
 router.put('/:jobId/applications/:appId', requireAdmin, async (req, res) => {
   try {
-    const application = await Application.findByIdAndUpdate(req.params.appId, { status: req.body.status }, { new: true });
-    if (!application) return res.status(404).json({ success: false, error: 'Application not found' });
+    const application = await Application.findByIdAndUpdate(
+      req.params.appId,
+      { status: req.body.status },
+      { new: true }
+    );
+    if (!application)
+      return res.status(404).json({ success: false, error: 'Application not found' });
     res.json({ success: true, data: application });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });

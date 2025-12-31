@@ -17,6 +17,6 @@ module.exports = defineConfig({
     // Collect artifacts to help debug CI failures
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure'
-  }
+    video: 'retain-on-failure',
+  },
 });

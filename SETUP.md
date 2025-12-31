@@ -3,12 +3,14 @@
 ## Quick Setup on New Machine
 
 1. **Clone the repository**
+
    ```bash
    git clone <your-repo-url>
    cd zenrix-backend
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
@@ -18,19 +20,22 @@
    - Update MongoDB connection string if needed
 
 4. **Restore database**
-   
+
    **Windows:**
+
    ```powershell
    .\db-backup\restore.ps1
    ```
-   
+
    **Linux/Mac:**
+
    ```bash
    chmod +x db-backup/restore.sh
    ./db-backup/restore.sh
    ```
 
 5. **Start the server**
+
    ```bash
    npm start
    ```

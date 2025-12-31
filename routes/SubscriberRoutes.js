@@ -48,20 +48,20 @@ router.delete('/:id', requireAdmin, async (req, res) => {
 router.get('/export/excel', requireAdmin, async (_req, res) => {
   try {
     const subs = await Subscriber.find().sort({ createdAt: -1 }).lean();
-    
+
     // Prepare data for Excel
     const excelData = subs.map((sub, index) => ({
       '#': index + 1,
-      'Email': sub.email,
-      'Source': sub.source || 'homepage',
-      'Consent': sub.consent ? 'Yes' : 'No',
+      Email: sub.email,
+      Source: sub.source || 'homepage',
+      Consent: sub.consent ? 'Yes' : 'No',
       'Subscribed Date': new Date(sub.createdAt).toLocaleString('en-US', {
         year: 'numeric',
         month: 'short',
         day: 'numeric',
         hour: '2-digit',
-        minute: '2-digit'
-      })
+        minute: '2-digit',
+      }),
     }));
 
     // Create workbook and worksheet
@@ -70,11 +70,11 @@ router.get('/export/excel', requireAdmin, async (_req, res) => {
 
     // Set column widths
     ws['!cols'] = [
-      { wch: 5 },  // #
+      { wch: 5 }, // #
       { wch: 30 }, // Email
       { wch: 12 }, // Source
       { wch: 10 }, // Consent
-      { wch: 20 }  // Date
+      { wch: 20 }, // Date
     ];
 
     XLSX.utils.book_append_sheet(wb, ws, 'Subscribers');
@@ -85,7 +85,10 @@ router.get('/export/excel', requireAdmin, async (_req, res) => {
     // Set headers for file download
     const date = new Date().toISOString().split('T')[0];
     res.setHeader('Content-Disposition', `attachment; filename="subscribers_${date}.xlsx"`);
-    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    );
     res.send(buffer);
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });

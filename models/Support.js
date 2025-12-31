@@ -4,7 +4,7 @@ const supportSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: false
+    required: false,
   },
   name: { type: String, required: true },
   email: { type: String, required: true },
@@ -13,10 +13,10 @@ const supportSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: ['open', 'in-progress', 'closed'],
-    default: 'open'
+    default: 'open',
   },
   createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now }
+  updatedAt: { type: Date, default: Date.now },
 });
 
 supportSchema.pre('save', function () {

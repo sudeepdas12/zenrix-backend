@@ -1,114 +1,183 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wishlist | Zenrix</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js" defer></script>
-</head>
-<body class="bg-slate-950 text-slate-100">
+  </head>
+  <body class="bg-slate-950 text-slate-100">
     <custom-navbar></custom-navbar>
     <main class="relative">
-        <section class="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 py-14">
-            <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.35),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(236,72,153,0.25),transparent_35%)]"></div>
-            <div class="container mx-auto px-4 relative">
-                <div class="flex flex-wrap items-center justify-between gap-6">
-                    <div class="space-y-4 max-w-2xl">
-                        <p class="text-xs uppercase tracking-[0.4em] text-indigo-200">Wishlist</p>
-                        <h1 class="text-4xl md:text-5xl font-black leading-tight">Save now, check out later.</h1>
-                        <p class="text-slate-200/80 max-w-xl">Your saved picks live here. Move them to cart when you are ready, or keep an eye on price drops.</p>
-                        <div class="flex flex-wrap gap-3 text-sm">
-                            <span class="px-4 py-2 rounded-full bg-white/10 border border-white/10" id="wishlistCountBadge">0 items saved</span>
-                            <a href="products.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold shadow">Browse products</a>
-                        </div>
-                    </div>
-                    <div class="rounded-[28px] bg-white/5 border border-white/10 p-6 backdrop-blur shadow-2xl min-w-[280px]">
-                        <p class="text-sm uppercase tracking-[0.3em] text-indigo-100">Quick insight</p>
-                        <div class="mt-4 space-y-3 text-sm text-slate-100/90">
-                            <div class="flex items-center justify-between">
-                                <span>Move items to cart</span>
-                                <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-100 border border-emerald-400/30">1-click</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span>Price shown in NPR</span>
-                                <span class="text-indigo-100">Live</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span>Stock changes reflected</span>
-                                <span class="text-indigo-100">Realtime</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <section
+        class="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 py-14"
+      >
+        <div
+          class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.35),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(236,72,153,0.25),transparent_35%)]"
+        ></div>
+        <div class="container mx-auto px-4 relative">
+          <div class="flex flex-wrap items-center justify-between gap-6">
+            <div class="space-y-4 max-w-2xl">
+              <p class="text-xs uppercase tracking-[0.4em] text-indigo-200">Wishlist</p>
+              <h1 class="text-4xl md:text-5xl font-black leading-tight">
+                Save now, check out later.
+              </h1>
+              <p class="text-slate-200/80 max-w-xl">
+                Your saved picks live here. Move them to cart when you are ready, or keep an eye on
+                price drops.
+              </p>
+              <div class="flex flex-wrap gap-3 text-sm">
+                <span
+                  class="px-4 py-2 rounded-full bg-white/10 border border-white/10"
+                  id="wishlistCountBadge"
+                  >0 items saved</span
+                >
+                <a
+                  href="products.html"
+                  class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold shadow"
+                  >Browse products</a
+                >
+              </div>
             </div>
-        </section>
-
-        <section class="container mx-auto px-4 py-12">
-            <div id="wishlistShell" class="space-y-8">
-                <div id="wishlistLoading" class="bg-white/5 border border-white/10 rounded-3xl p-10 flex items-center justify-center text-slate-200">
-                    <div class="flex items-center gap-3 text-sm">
-                        <span class="h-2 w-2 rounded-full bg-indigo-400 animate-ping"></span>
-                        Fetching your saved items…
-                    </div>
+            <div
+              class="rounded-[28px] bg-white/5 border border-white/10 p-6 backdrop-blur shadow-2xl min-w-[280px]"
+            >
+              <p class="text-sm uppercase tracking-[0.3em] text-indigo-100">Quick insight</p>
+              <div class="mt-4 space-y-3 text-sm text-slate-100/90">
+                <div class="flex items-center justify-between">
+                  <span>Move items to cart</span>
+                  <span
+                    class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-100 border border-emerald-400/30"
+                    >1-click</span
+                  >
                 </div>
-
-                <div id="wishlistContent" class="hidden space-y-6">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h2 class="text-2xl font-bold text-white">Saved items</h2>
-                            <p class="text-slate-300 text-sm">Tap into cart or remove items you no longer want.</p>
-                        </div>
-                        <a href="products.html" class="text-indigo-200 hover:text-white font-semibold text-sm">+ Add more products</a>
-                    </div>
-
-                    <div id="wishlistGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+                <div class="flex items-center justify-between">
+                  <span>Price shown in NPR</span>
+                  <span class="text-indigo-100">Live</span>
                 </div>
-
-                <div id="wishlistEmpty" class="hidden bg-white/5 border border-white/10 rounded-3xl p-10 text-center text-slate-100">
-                    <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-indigo-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.8 4.6c-1.4-1.6-3.9-1.8-5.6-.4l-.7.6-.7-.6C11.1 2 9 2.2 7.6 3.8c-2.1 2.4-2 6 0 8.5L12 21l4.4-9.7c2-2.5 2.1-6.1 0-8.7z"/></svg>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-2">No favorites yet</h3>
-                    <p class="text-slate-300 mb-6">Heart products to build your shortlist. They’ll show up here.</p>
-                    <a href="products.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-slate-900 font-semibold shadow hover:-translate-y-0.5 transition">Browse products</a>
+                <div class="flex items-center justify-between">
+                  <span>Stock changes reflected</span>
+                  <span class="text-indigo-100">Realtime</span>
                 </div>
-
-                <div id="wishlistAuth" class="hidden bg-white/5 border border-white/10 rounded-3xl p-10 text-center text-slate-100">
-                    <h3 class="text-2xl font-semibold mb-2">Log in to view your wishlist</h3>
-                    <p class="text-slate-300 mb-6">We keep your saved items synced to your account.</p>
-                    <div class="flex flex-wrap justify-center gap-3">
-                        <a href="login.html" class="px-6 py-3 rounded-full bg-white text-slate-900 font-semibold shadow">Log in</a>
-                        <a href="register.html" class="px-6 py-3 rounded-full border border-white/30 text-white font-semibold hover:bg-white/10">Create account</a>
-                    </div>
-                </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="container mx-auto px-4 py-12">
+        <div id="wishlistShell" class="space-y-8">
+          <div
+            id="wishlistLoading"
+            class="bg-white/5 border border-white/10 rounded-3xl p-10 flex items-center justify-center text-slate-200"
+          >
+            <div class="flex items-center gap-3 text-sm">
+              <span class="h-2 w-2 rounded-full bg-indigo-400 animate-ping"></span>
+              Fetching your saved items…
+            </div>
+          </div>
+
+          <div id="wishlistContent" class="hidden space-y-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-2xl font-bold text-white">Saved items</h2>
+                <p class="text-slate-300 text-sm">
+                  Tap into cart or remove items you no longer want.
+                </p>
+              </div>
+              <a href="products.html" class="text-indigo-200 hover:text-white font-semibold text-sm"
+                >+ Add more products</a
+              >
+            </div>
+
+            <div
+              id="wishlistGrid"
+              class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
+            ></div>
+          </div>
+
+          <div
+            id="wishlistEmpty"
+            class="hidden bg-white/5 border border-white/10 rounded-3xl p-10 text-center text-slate-100"
+          >
+            <div
+              class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6 text-indigo-100"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  d="M20.8 4.6c-1.4-1.6-3.9-1.8-5.6-.4l-.7.6-.7-.6C11.1 2 9 2.2 7.6 3.8c-2.1 2.4-2 6 0 8.5L12 21l4.4-9.7c2-2.5 2.1-6.1 0-8.7z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-semibold mb-2">No favorites yet</h3>
+            <p class="text-slate-300 mb-6">
+              Heart products to build your shortlist. They’ll show up here.
+            </p>
+            <a
+              href="products.html"
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-slate-900 font-semibold shadow hover:-translate-y-0.5 transition"
+              >Browse products</a
+            >
+          </div>
+
+          <div
+            id="wishlistAuth"
+            class="hidden bg-white/5 border border-white/10 rounded-3xl p-10 text-center text-slate-100"
+          >
+            <h3 class="text-2xl font-semibold mb-2">Log in to view your wishlist</h3>
+            <p class="text-slate-300 mb-6">We keep your saved items synced to your account.</p>
+            <div class="flex flex-wrap justify-center gap-3">
+              <a
+                href="login.html"
+                class="px-6 py-3 rounded-full bg-white text-slate-900 font-semibold shadow"
+                >Log in</a
+              >
+              <a
+                href="register.html"
+                class="px-6 py-3 rounded-full border border-white/30 text-white font-semibold hover:bg-white/10"
+                >Create account</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <custom-footer></custom-footer>
 
     <script src="components/navbar.js"></script>
     <script src="components/footer.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', initWishlistPage);
+      document.addEventListener('DOMContentLoaded', initWishlistPage);
 
-        function getProductId(item) {
-            return item?.productId || item?._id || item?.id;
-        }
+      function getProductId(item) {
+        return item?.productId || item?._id || item?.id;
+      }
 
-        function buildWishlistCard(item) {
-            const pid = getProductId(item) || '';
-            const image = item.image || (Array.isArray(item.images) && item.images[0]) || 'https://via.placeholder.com/600x600?text=Zenrix';
-            const name = item.name || item.title || 'Saved item';
-            const sale = typeof isSaleActive === 'function' && isSaleActive(item);
-            const effectivePrice = typeof getEffectivePrice === 'function' ? getEffectivePrice(item) : (item.price || 0);
-            const basePrice = item.price || effectivePrice;
-            const priceBlock = sale
-                ? `<div class="flex items-center gap-2"><span class="text-lg font-semibold text-emerald-300">${formatNpr(effectivePrice)}</span><span class="text-sm line-through text-slate-400">${formatNpr(basePrice)}</span><span class="px-2 py-1 text-xs rounded-full bg-rose-500/20 text-rose-100 border border-rose-400/30">${item.saleLabel || 'On Sale'}</span></div>`
-                : `<p class="text-lg font-semibold text-white">${formatNpr(basePrice)}</p>`;
+      function buildWishlistCard(item) {
+        const pid = getProductId(item) || '';
+        const image =
+          item.image ||
+          (Array.isArray(item.images) && item.images[0]) ||
+          'https://via.placeholder.com/600x600?text=Zenrix';
+        const name = item.name || item.title || 'Saved item';
+        const sale = typeof isSaleActive === 'function' && isSaleActive(item);
+        const effectivePrice =
+          typeof getEffectivePrice === 'function' ? getEffectivePrice(item) : item.price || 0;
+        const basePrice = item.price || effectivePrice;
+        const priceBlock = sale
+          ? `<div class="flex items-center gap-2"><span class="text-lg font-semibold text-emerald-300">${formatNpr(effectivePrice)}</span><span class="text-sm line-through text-slate-400">${formatNpr(basePrice)}</span><span class="px-2 py-1 text-xs rounded-full bg-rose-500/20 text-rose-100 border border-rose-400/30">${item.saleLabel || 'On Sale'}</span></div>`
+          : `<p class="text-lg font-semibold text-white">${formatNpr(basePrice)}</p>`;
 
-            return `
+        return `
                 <article class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur shadow-xl hover:-translate-y-1 transition">
                     <button class="absolute top-3 right-3 p-2 rounded-full bg-white/10 text-rose-200 hover:bg-white/20" data-remove="${pid}" aria-label="Remove from wishlist">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 18L18 6M6 6l12 12"/></svg>
@@ -131,99 +200,105 @@
                     </div>
                 </article>
             `;
+      }
+
+      async function initWishlistPage() {
+        const loading = document.getElementById('wishlistLoading');
+        const content = document.getElementById('wishlistContent');
+        const empty = document.getElementById('wishlistEmpty');
+        const auth = document.getElementById('wishlistAuth');
+        const grid = document.getElementById('wishlistGrid');
+        const badge = document.getElementById('wishlistCountBadge');
+
+        const token = typeof getAuthToken === 'function' ? getAuthToken() : null;
+        if (!token) {
+          loading.classList.add('hidden');
+          auth.classList.remove('hidden');
+          return;
         }
 
-        async function initWishlistPage() {
-            const loading = document.getElementById('wishlistLoading');
-            const content = document.getElementById('wishlistContent');
-            const empty = document.getElementById('wishlistEmpty');
-            const auth = document.getElementById('wishlistAuth');
-            const grid = document.getElementById('wishlistGrid');
-            const badge = document.getElementById('wishlistCountBadge');
+        try {
+          const res = await fetch('/api/users/wishlist', {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          const data = await res.json();
+          const items = data.success && Array.isArray(data.data) ? data.data : [];
 
-            const token = typeof getAuthToken === 'function' ? getAuthToken() : null;
-            if (!token) {
-                loading.classList.add('hidden');
-                auth.classList.remove('hidden');
-                return;
-            }
+          loading.classList.add('hidden');
 
-            try {
-                const res = await fetch('/api/users/wishlist', {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                const data = await res.json();
-                const items = data.success && Array.isArray(data.data) ? data.data : [];
+          if (!items.length) {
+            empty.classList.remove('hidden');
+            badge.textContent = '0 items saved';
+            return;
+          }
 
-                loading.classList.add('hidden');
+          grid.innerHTML = items.map(buildWishlistCard).join('');
+          badge.textContent = `${items.length} item${items.length === 1 ? '' : 's'} saved`;
+          content.classList.remove('hidden');
 
-                if (!items.length) {
-                    empty.classList.remove('hidden');
-                    badge.textContent = '0 items saved';
-                    return;
-                }
+          grid.querySelectorAll('[data-add]').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              const pid = btn.getAttribute('data-add');
+              const item = items.find((i) => String(getProductId(i)) === pid);
+              if (!item) return;
+              const price =
+                typeof getEffectivePrice === 'function' ? getEffectivePrice(item) : item.price || 0;
+              const image = item.image || (Array.isArray(item.images) && item.images[0]);
+              addToCart(
+                {
+                  id: pid,
+                  name: item.name || item.title || 'Product',
+                  price: price,
+                  image: image,
+                  color:
+                    (item.colors && item.colors[0]) ||
+                    (item.colorOptions && item.colorOptions[0]) ||
+                    undefined,
+                },
+                1
+              );
+            });
+          });
 
-                grid.innerHTML = items.map(buildWishlistCard).join('');
-                badge.textContent = `${items.length} item${items.length === 1 ? '' : 's'} saved`;
-                content.classList.remove('hidden');
-
-                grid.querySelectorAll('[data-add]').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const pid = btn.getAttribute('data-add');
-                        const item = items.find(i => String(getProductId(i)) === pid);
-                        if (!item) return;
-                        const price = typeof getEffectivePrice === 'function' ? getEffectivePrice(item) : (item.price || 0);
-                        const image = item.image || (Array.isArray(item.images) && item.images[0]);
-                        addToCart({
-                            id: pid,
-                            name: item.name || item.title || 'Product',
-                            price: price,
-                            image: image,
-                            color: (item.colors && item.colors[0]) || (item.colorOptions && item.colorOptions[0]) || undefined
-                        }, 1);
-                    });
-                });
-
-                grid.querySelectorAll('[data-remove]').forEach(btn => {
-                    btn.addEventListener('click', async (e) => {
-                        e.preventDefault();
-                        const pid = btn.getAttribute('data-remove');
-                        await removeWishlistItem(pid);
-                        btn.closest('article')?.remove();
-                        const remaining = grid.querySelectorAll('article').length;
-                        badge.textContent = `${remaining} item${remaining === 1 ? '' : 's'} saved`;
-                        if (remaining === 0) {
-                            content.classList.add('hidden');
-                            empty.classList.remove('hidden');
-                        }
-                    });
-                });
-
-            } catch (err) {
-                console.error('Failed to load wishlist', err);
-                loading.classList.add('hidden');
+          grid.querySelectorAll('[data-remove]').forEach((btn) => {
+            btn.addEventListener('click', async (e) => {
+              e.preventDefault();
+              const pid = btn.getAttribute('data-remove');
+              await removeWishlistItem(pid);
+              btn.closest('article')?.remove();
+              const remaining = grid.querySelectorAll('article').length;
+              badge.textContent = `${remaining} item${remaining === 1 ? '' : 's'} saved`;
+              if (remaining === 0) {
+                content.classList.add('hidden');
                 empty.classList.remove('hidden');
-            }
+              }
+            });
+          });
+        } catch (err) {
+          console.error('Failed to load wishlist', err);
+          loading.classList.add('hidden');
+          empty.classList.remove('hidden');
         }
+      }
 
-        async function removeWishlistItem(productId) {
-            if (!productId) return;
-            try {
-                const token = typeof getAuthToken === 'function' ? getAuthToken() : null;
-                await fetch(`/api/users/wishlist/${productId}`, {
-                    method: 'DELETE',
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                if (typeof showToast === 'function') {
-                    showToast('Removed from wishlist');
-                }
-            } catch (err) {
-                console.error('Failed to remove from wishlist', err);
-                if (typeof showToast === 'function') {
-                    showToast('Could not remove item');
-                }
-            }
+      async function removeWishlistItem(productId) {
+        if (!productId) return;
+        try {
+          const token = typeof getAuthToken === 'function' ? getAuthToken() : null;
+          await fetch(`/api/users/wishlist/${productId}`, {
+            method: 'DELETE',
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          if (typeof showToast === 'function') {
+            showToast('Removed from wishlist');
+          }
+        } catch (err) {
+          console.error('Failed to remove from wishlist', err);
+          if (typeof showToast === 'function') {
+            showToast('Could not remove item');
+          }
         }
+      }
     </script>
-</body>
+  </body>
 </html>

@@ -1,200 +1,317 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Addresses | Zenrix</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <script src="script.js" defer></script>
-</head>
-<body class="bg-slate-950 text-slate-100">
+  </head>
+  <body class="bg-slate-950 text-slate-100">
     <custom-navbar></custom-navbar>
 
     <!-- Loading State -->
     <div id="loadingState" class="flex items-center justify-center min-h-screen">
-        <div class="text-center text-slate-200">
-            <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-indigo-400 mx-auto mb-4"></div>
-            <p>Loading addresses...</p>
-        </div>
+      <div class="text-center text-slate-200">
+        <div
+          class="animate-spin rounded-full h-16 w-16 border-b-4 border-indigo-400 mx-auto mb-4"
+        ></div>
+        <p>Loading addresses...</p>
+      </div>
     </div>
 
     <!-- Not Logged In State -->
     <div id="notLoggedInState" class="hidden container mx-auto px-4 py-16">
-        <div class="max-w-md mx-auto bg-white/5 border border-white/10 rounded-2xl shadow-xl p-8 text-center backdrop-blur">
-            <div class="w-20 h-20 bg-indigo-500/20 border border-indigo-400/40 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-user-lock text-3xl text-indigo-100"></i>
-            </div>
-            <h2 class="text-2xl font-bold text-white mb-2">Please log in</h2>
-            <p class="text-slate-300 mb-6">Sign in to manage your saved addresses.</p>
-            <div class="space-y-3">
-                <a href="login.html" class="block w-full bg-white text-slate-900 px-6 py-3 rounded-xl font-semibold shadow hover:-translate-y-0.5 transition">
-                    <i class="fas fa-sign-in-alt mr-2"></i> Log In
-                </a>
-                <a href="register.html" class="block w-full bg-white/10 border border-white/20 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/15 transition">
-                    <i class="fas fa-user-plus mr-2"></i> Create Account
-                </a>
-            </div>
+      <div
+        class="max-w-md mx-auto bg-white/5 border border-white/10 rounded-2xl shadow-xl p-8 text-center backdrop-blur"
+      >
+        <div
+          class="w-20 h-20 bg-indigo-500/20 border border-indigo-400/40 rounded-full flex items-center justify-center mx-auto mb-4"
+        >
+          <i class="fas fa-user-lock text-3xl text-indigo-100"></i>
         </div>
+        <h2 class="text-2xl font-bold text-white mb-2">Please log in</h2>
+        <p class="text-slate-300 mb-6">Sign in to manage your saved addresses.</p>
+        <div class="space-y-3">
+          <a
+            href="login.html"
+            class="block w-full bg-white text-slate-900 px-6 py-3 rounded-xl font-semibold shadow hover:-translate-y-0.5 transition"
+          >
+            <i class="fas fa-sign-in-alt mr-2"></i> Log In
+          </a>
+          <a
+            href="register.html"
+            class="block w-full bg-white/10 border border-white/20 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/15 transition"
+          >
+            <i class="fas fa-user-plus mr-2"></i> Create Account
+          </a>
+        </div>
+      </div>
     </div>
 
     <!-- Main Content -->
     <main id="addressesContent" class="hidden">
-        <section class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 py-12">
-            <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.35),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(236,72,153,0.25),transparent_40%)]"></div>
-            <div class="container mx-auto px-4 relative">
-                <div class="flex flex-col lg:flex-row items-start lg:items-center gap-6 justify-between">
-                    <div class="space-y-3">
-                        <p class="text-sm text-indigo-100 uppercase tracking-[0.35em]">Addresses</p>
-                        <h1 class="text-3xl font-bold">Saved delivery locations</h1>
-                        <p class="text-slate-200 max-w-2xl">Manage your default delivery address, keep your info up to date, and switch between home and work quickly.</p>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white shadow">
-                            <p class="text-xs uppercase tracking-[0.2em] text-indigo-100">Total saved</p>
-                            <p id="addressCount" class="text-3xl font-bold mt-1">0</p>
-                        </div>
-                        <button id="addNewAddress" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-slate-900 font-semibold shadow hover:-translate-y-0.5 transition">
-                            <i class="fas fa-plus"></i>
-                            Add address
-                        </button>
-                    </div>
-                </div>
+      <section
+        class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 py-12"
+      >
+        <div
+          class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.35),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(236,72,153,0.25),transparent_40%)]"
+        ></div>
+        <div class="container mx-auto px-4 relative">
+          <div class="flex flex-col lg:flex-row items-start lg:items-center gap-6 justify-between">
+            <div class="space-y-3">
+              <p class="text-sm text-indigo-100 uppercase tracking-[0.35em]">Addresses</p>
+              <h1 class="text-3xl font-bold">Saved delivery locations</h1>
+              <p class="text-slate-200 max-w-2xl">
+                Manage your default delivery address, keep your info up to date, and switch between
+                home and work quickly.
+              </p>
             </div>
-        </section>
-
-        <section class="container mx-auto px-4 py-10 space-y-6">
-            <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-6">
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <div>
-                            <h2 class="text-xl font-semibold text-white">Saved addresses</h2>
-                            <p class="text-slate-300 text-sm">Default address is highlighted.</p>
-                        </div>
-                    </div>
-                    <div id="addressContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <p class="text-slate-300">No addresses added yet.</p>
-                    </div>
-                </div>
-
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl space-y-4">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h3 class="text-lg font-semibold text-white">Default address</h3>
-                            <p class="text-slate-300 text-sm">Used for checkout by default.</p>
-                        </div>
-                        <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-100 text-xs font-semibold">Primary</span>
-                    </div>
-                    <div id="defaultAddress" class="p-4 rounded-xl bg-white/5 border border-white/10 text-slate-100">
-                        <p class="text-slate-300">No default address selected.</p>
-                    </div>
-                    <div class="text-xs text-slate-400">Tip: Mark one address as default for faster checkout.</div>
-                </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white shadow"
+              >
+                <p class="text-xs uppercase tracking-[0.2em] text-indigo-100">Total saved</p>
+                <p id="addressCount" class="text-3xl font-bold mt-1">0</p>
+              </div>
+              <button
+                id="addNewAddress"
+                class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-slate-900 font-semibold shadow hover:-translate-y-0.5 transition"
+              >
+                <i class="fas fa-plus"></i>
+                Add address
+              </button>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="container mx-auto px-4 py-10 space-y-6">
+        <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-6">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h2 class="text-xl font-semibold text-white">Saved addresses</h2>
+                <p class="text-slate-300 text-sm">Default address is highlighted.</p>
+              </div>
+            </div>
+            <div id="addressContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <p class="text-slate-300">No addresses added yet.</p>
+            </div>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-semibold text-white">Default address</h3>
+                <p class="text-slate-300 text-sm">Used for checkout by default.</p>
+              </div>
+              <span
+                class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-100 text-xs font-semibold"
+                >Primary</span
+              >
+            </div>
+            <div
+              id="defaultAddress"
+              class="p-4 rounded-xl bg-white/5 border border-white/10 text-slate-100"
+            >
+              <p class="text-slate-300">No default address selected.</p>
+            </div>
+            <div class="text-xs text-slate-400">
+              Tip: Mark one address as default for faster checkout.
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Modal -->
-    <div id="addressModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center hidden z-50">
-        <div class="bg-slate-900 border border-white/10 rounded-2xl shadow-2xl w-full max-w-xl p-6 relative">
-            <button id="closeModal" class="absolute right-4 top-4 text-slate-300 hover:text-white"><i class="fas fa-times"></i></button>
-            <h3 id="modalTitle" class="text-xl font-semibold text-white mb-1">Add new address</h3>
-            <p class="text-slate-300 text-sm mb-4">Fill in the delivery details below.</p>
+    <div
+      id="addressModal"
+      class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center hidden z-50"
+    >
+      <div
+        class="bg-slate-900 border border-white/10 rounded-2xl shadow-2xl w-full max-w-xl p-6 relative"
+      >
+        <button id="closeModal" class="absolute right-4 top-4 text-slate-300 hover:text-white">
+          <i class="fas fa-times"></i>
+        </button>
+        <h3 id="modalTitle" class="text-xl font-semibold text-white mb-1">Add new address</h3>
+        <p class="text-slate-300 text-sm mb-4">Fill in the delivery details below.</p>
 
-            <form id="addressForm" class="space-y-4">
-                <input type="hidden" id="addressId">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm text-slate-200 mb-1">Address type</label>
-                        <select id="addressType" class="w-full px-4 py-3 rounded-xl bg-slate-900/70 border border-white/15 text-white focus:outline-none focus:border-indigo-400" required>
-                            <option value="Home">Home</option>
-                            <option value="Work">Work</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm text-slate-200 mb-1">Full name</label>
-                        <input type="text" id="fullName" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400" placeholder="Recipient name" required>
-                    </div>
-                </div>
+        <form id="addressForm" class="space-y-4">
+          <input type="hidden" id="addressId" />
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm text-slate-200 mb-1">Address type</label>
+              <select
+                id="addressType"
+                class="w-full px-4 py-3 rounded-xl bg-slate-900/70 border border-white/15 text-white focus:outline-none focus:border-indigo-400"
+                required
+              >
+                <option value="Home">Home</option>
+                <option value="Work">Work</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm text-slate-200 mb-1">Full name</label>
+              <input
+                type="text"
+                id="fullName"
+                class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400"
+                placeholder="Recipient name"
+                required
+              />
+            </div>
+          </div>
 
-                <div>
-                    <label class="block text-sm text-slate-200 mb-1">Address line 1</label>
-                    <input type="text" id="addressLine1" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400" placeholder="Street, house no." required>
-                </div>
-                <div>
-                    <label class="block text-sm text-slate-200 mb-1">Address line 2 (optional)</label>
-                    <input type="text" id="addressLine2" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400" placeholder="Apartment, landmark">
-                </div>
+          <div>
+            <label class="block text-sm text-slate-200 mb-1">Address line 1</label>
+            <input
+              type="text"
+              id="addressLine1"
+              class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400"
+              placeholder="Street, house no."
+              required
+            />
+          </div>
+          <div>
+            <label class="block text-sm text-slate-200 mb-1">Address line 2 (optional)</label>
+            <input
+              type="text"
+              id="addressLine2"
+              class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400"
+              placeholder="Apartment, landmark"
+            />
+          </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-sm text-slate-200 mb-1">City</label>
-                        <input type="text" id="city" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400" required>
-                    </div>
-                    <div>
-                        <label class="block text-sm text-slate-200 mb-1">State</label>
-                        <input type="text" id="state" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400" required>
-                    </div>
-                    <div>
-                        <label class="block text-sm text-slate-200 mb-1">Postal code</label>
-                        <input type="text" id="zipCode" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400" required>
-                    </div>
-                </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-sm text-slate-200 mb-1">City</label>
+              <input
+                type="text"
+                id="city"
+                class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm text-slate-200 mb-1">State</label>
+              <input
+                type="text"
+                id="state"
+                class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm text-slate-200 mb-1">Postal code</label>
+              <input
+                type="text"
+                id="zipCode"
+                class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400"
+                required
+              />
+            </div>
+          </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="md:col-span-1">
-                        <label class="block text-sm text-slate-200 mb-1">Country</label>
-                        <input type="text" id="country" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400" value="Nepal" required>
-                    </div>
-                    <div>
-                        <label class="block text-sm text-slate-200 mb-1">Mobile</label>
-                        <input type="tel" id="phoneNumber" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400" placeholder="98XXXXXXXX" required>
-                    </div>
-                    <div>
-                        <label class="block text-sm text-slate-200 mb-1">Landline (optional)</label>
-                        <input type="tel" id="landlineNumber" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400" placeholder="01-XXXXXXX">
-                    </div>
-                </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="md:col-span-1">
+              <label class="block text-sm text-slate-200 mb-1">Country</label>
+              <input
+                type="text"
+                id="country"
+                class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400"
+                value="Nepal"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm text-slate-200 mb-1">Mobile</label>
+              <input
+                type="tel"
+                id="phoneNumber"
+                class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400"
+                placeholder="98XXXXXXXX"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm text-slate-200 mb-1">Landline (optional)</label>
+              <input
+                type="tel"
+                id="landlineNumber"
+                class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-slate-400 focus:outline-none focus:border-indigo-400"
+                placeholder="01-XXXXXXX"
+              />
+            </div>
+          </div>
 
-                <label class="inline-flex items-center gap-2 text-slate-200 text-sm">
-                    <input type="checkbox" id="isDefault" class="h-4 w-4 rounded border-white/30 bg-white/10">
-                    <span>Set as default shipping address</span>
-                </label>
+          <label class="inline-flex items-center gap-2 text-slate-200 text-sm">
+            <input
+              type="checkbox"
+              id="isDefault"
+              class="h-4 w-4 rounded border-white/30 bg-white/10"
+            />
+            <span>Set as default shipping address</span>
+          </label>
 
-                <div class="flex flex-wrap justify-end gap-3 pt-3">
-                    <button type="button" id="cancelAddress" class="px-5 py-3 rounded-xl border border-white/15 text-white hover:bg-white/10 transition">Cancel</button>
-                    <button type="submit" class="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold shadow hover:-translate-y-0.5 transition">Save address</button>
-                </div>
-            </form>
-        </div>
+          <div class="flex flex-wrap justify-end gap-3 pt-3">
+            <button
+              type="button"
+              id="cancelAddress"
+              class="px-5 py-3 rounded-xl border border-white/15 text-white hover:bg-white/10 transition"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold shadow hover:-translate-y-0.5 transition"
+            >
+              Save address
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <custom-footer></custom-footer>
     <script src="components/navbar.js"></script>
     <script src="components/footer.js"></script>
     <script>
-        const state = {
-            addresses: []
-        };
+      const state = {
+        addresses: [],
+      };
 
-        function setAddressCount(count) {
-            const el = document.getElementById('addressCount');
-            if (el) el.textContent = count;
+      function setAddressCount(count) {
+        const el = document.getElementById('addressCount');
+        if (el) el.textContent = count;
+      }
+
+      function renderDefaultAddress(addresses) {
+        const defaultBox = document.getElementById('defaultAddress');
+        const defaultAddr = addresses.find((a) => a.isDefault);
+        if (!defaultAddr) {
+          defaultBox.innerHTML = '<p class="text-slate-300">No default address selected.</p>';
+          return;
         }
 
-        function renderDefaultAddress(addresses) {
-            const defaultBox = document.getElementById('defaultAddress');
-            const defaultAddr = addresses.find(a => a.isDefault);
-            if (!defaultAddr) {
-                defaultBox.innerHTML = '<p class="text-slate-300">No default address selected.</p>';
-                return;
-            }
-
-            const lines = [defaultAddr.addressLine1, defaultAddr.addressLine2, defaultAddr.city, defaultAddr.state, defaultAddr.zipCode, defaultAddr.country]
-                .filter(Boolean)
-                .join(', ');
-            defaultBox.innerHTML = `
+        const lines = [
+          defaultAddr.addressLine1,
+          defaultAddr.addressLine2,
+          defaultAddr.city,
+          defaultAddr.state,
+          defaultAddr.zipCode,
+          defaultAddr.country,
+        ]
+          .filter(Boolean)
+          .join(', ');
+        defaultBox.innerHTML = `
                 <div class="flex items-start gap-3">
                     <div class="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-100"><i class="fas fa-map-marker-alt"></i></div>
                     <div class="flex-1">
@@ -206,25 +323,35 @@
                     </div>
                 </div>
             `;
+      }
+
+      function renderAddresses(addresses) {
+        const container = document.getElementById('addressContainer');
+        if (!container) return;
+
+        if (!addresses || addresses.length === 0) {
+          container.innerHTML = '<p class="text-slate-300">No addresses added yet.</p>';
+          renderDefaultAddress([]);
+          setAddressCount(0);
+          return;
         }
 
-        function renderAddresses(addresses) {
-            const container = document.getElementById('addressContainer');
-            if (!container) return;
-
-            if (!addresses || addresses.length === 0) {
-                container.innerHTML = '<p class="text-slate-300">No addresses added yet.</p>';
-                renderDefaultAddress([]);
-                setAddressCount(0);
-                return;
-            }
-
-            container.innerHTML = addresses.map(address => {
-                const lines = [address.addressLine1, address.addressLine2, address.city, address.state, address.zipCode, address.country]
-                    .filter(Boolean)
-                    .join(', ');
-                const badge = address.isDefault ? '<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/20 text-emerald-100 text-xs border border-emerald-400/30">Default</span>' : '';
-                return `
+        container.innerHTML = addresses
+          .map((address) => {
+            const lines = [
+              address.addressLine1,
+              address.addressLine2,
+              address.city,
+              address.state,
+              address.zipCode,
+              address.country,
+            ]
+              .filter(Boolean)
+              .join(', ');
+            const badge = address.isDefault
+              ? '<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/20 text-emerald-100 text-xs border border-emerald-400/30">Default</span>'
+              : '';
+            return `
                     <div class="border border-white/10 bg-white/5 rounded-xl p-4 text-slate-100 relative">
                         <div class="absolute top-3 right-3 flex items-center gap-2 text-sm">
                             ${badge}
@@ -239,167 +366,168 @@
                         ${!address.isDefault ? `<button class="mt-3 inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-white/5 text-sm text-white hover:bg-white/10" data-default="${address._id}"><i class="fas fa-star"></i> Set as default</button>` : ''}
                     </div>
                 `;
-            }).join('');
+          })
+          .join('');
 
-            renderDefaultAddress(addresses);
-            setAddressCount(addresses.length);
-        }
+        renderDefaultAddress(addresses);
+        setAddressCount(addresses.length);
+      }
 
-        function openModal(address = null) {
-            const modal = document.getElementById('addressModal');
-            const title = document.getElementById('modalTitle');
-            const form = document.getElementById('addressForm');
-            if (!modal || !title || !form) return;
+      function openModal(address = null) {
+        const modal = document.getElementById('addressModal');
+        const title = document.getElementById('modalTitle');
+        const form = document.getElementById('addressForm');
+        if (!modal || !title || !form) return;
 
-            form.reset();
-            document.getElementById('country').value = 'Nepal';
-            document.getElementById('addressId').value = address?._id || '';
-            document.getElementById('addressType').value = address?.type || 'Home';
-            document.getElementById('fullName').value = address?.fullName || '';
-            document.getElementById('addressLine1').value = address?.addressLine1 || '';
-            document.getElementById('addressLine2').value = address?.addressLine2 || '';
-            document.getElementById('city').value = address?.city || '';
-            document.getElementById('state').value = address?.state || '';
-            document.getElementById('zipCode').value = address?.zipCode || '';
-            document.getElementById('country').value = address?.country || 'Nepal';
-            document.getElementById('phoneNumber').value = address?.phone || '';
-            document.getElementById('landlineNumber').value = address?.landline || '';
-            document.getElementById('isDefault').checked = Boolean(address?.isDefault);
+        form.reset();
+        document.getElementById('country').value = 'Nepal';
+        document.getElementById('addressId').value = address?._id || '';
+        document.getElementById('addressType').value = address?.type || 'Home';
+        document.getElementById('fullName').value = address?.fullName || '';
+        document.getElementById('addressLine1').value = address?.addressLine1 || '';
+        document.getElementById('addressLine2').value = address?.addressLine2 || '';
+        document.getElementById('city').value = address?.city || '';
+        document.getElementById('state').value = address?.state || '';
+        document.getElementById('zipCode').value = address?.zipCode || '';
+        document.getElementById('country').value = address?.country || 'Nepal';
+        document.getElementById('phoneNumber').value = address?.phone || '';
+        document.getElementById('landlineNumber').value = address?.landline || '';
+        document.getElementById('isDefault').checked = Boolean(address?.isDefault);
 
-            title.textContent = address ? 'Edit address' : 'Add new address';
-            modal.classList.remove('hidden');
-        }
+        title.textContent = address ? 'Edit address' : 'Add new address';
+        modal.classList.remove('hidden');
+      }
 
-        function closeModal() {
-            const modal = document.getElementById('addressModal');
-            if (modal) modal.classList.add('hidden');
-        }
+      function closeModal() {
+        const modal = document.getElementById('addressModal');
+        if (modal) modal.classList.add('hidden');
+      }
 
-        async function loadAddresses() {
-            const token = getAuthToken();
-            const res = await fetch('/api/users/addresses', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            const data = await res.json();
-            if (!data.success) throw new Error(data.error || 'Failed to load addresses');
-            state.addresses = data.data || [];
-            renderAddresses(state.addresses);
-        }
-
-        async function saveAddress(payload, id) {
-            const token = getAuthToken();
-            const method = id ? 'PUT' : 'POST';
-            const url = id ? `/api/users/addresses/${id}` : '/api/users/addresses';
-            const res = await fetch(url, {
-                method,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(payload)
-            });
-            const data = await res.json();
-            if (!data.success) throw new Error(data.error || 'Failed to save address');
-            state.addresses = data.data || [];
-            renderAddresses(state.addresses);
-        }
-
-        async function deleteAddress(id) {
-            const token = getAuthToken();
-            const res = await fetch(`/api/users/addresses/${id}`, {
-                method: 'DELETE',
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            const data = await res.json();
-            if (!data.success) throw new Error(data.error || 'Failed to delete address');
-            state.addresses = data.data || [];
-            renderAddresses(state.addresses);
-        }
-
-        async function setDefaultAddress(id) {
-            const current = state.addresses.find(a => a._id === id);
-            if (!current) return;
-            await saveAddress({ isDefault: true }, id);
-        }
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            const loadingState = document.getElementById('loadingState');
-            const notLoggedInState = document.getElementById('notLoggedInState');
-            const content = document.getElementById('addressesContent');
-
-            if (!isLoggedIn()) {
-                loadingState.classList.add('hidden');
-                notLoggedInState.classList.remove('hidden');
-                return;
-            }
-
-            try {
-                await loadAddresses();
-                loadingState.classList.add('hidden');
-                content.classList.remove('hidden');
-            } catch (err) {
-                console.error('Address load error:', err);
-                loadingState.classList.add('hidden');
-                notLoggedInState.classList.remove('hidden');
-            }
-
-            document.getElementById('addNewAddress').addEventListener('click', () => openModal());
-            document.getElementById('closeModal').addEventListener('click', closeModal);
-            document.getElementById('cancelAddress').addEventListener('click', closeModal);
-
-            document.getElementById('addressForm').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const payload = {
-                    type: document.getElementById('addressType').value,
-                    fullName: document.getElementById('fullName').value,
-                    addressLine1: document.getElementById('addressLine1').value,
-                    addressLine2: document.getElementById('addressLine2').value,
-                    city: document.getElementById('city').value,
-                    state: document.getElementById('state').value,
-                    zipCode: document.getElementById('zipCode').value,
-                    country: document.getElementById('country').value,
-                    phone: document.getElementById('phoneNumber').value,
-                    landline: document.getElementById('landlineNumber').value,
-                    isDefault: document.getElementById('isDefault').checked
-                };
-                const id = document.getElementById('addressId').value || null;
-                try {
-                    await saveAddress(payload, id);
-                    closeModal();
-                } catch (err) {
-                    console.error('Save address error:', err);
-                }
-            });
-
-            document.getElementById('addressContainer').addEventListener('click', async (e) => {
-                const editId = e.target.closest('[data-edit]')?.dataset.edit;
-                const deleteId = e.target.closest('[data-delete]')?.dataset.delete;
-                const defaultId = e.target.closest('[data-default]')?.dataset.default;
-
-                if (editId) {
-                    const addr = state.addresses.find(a => a._id === editId);
-                    openModal(addr);
-                }
-
-                if (deleteId) {
-                    const confirmed = window.confirm('Delete this address?');
-                    if (!confirmed) return;
-                    try {
-                        await deleteAddress(deleteId);
-                    } catch (err) {
-                        console.error('Delete address error:', err);
-                    }
-                }
-
-                if (defaultId) {
-                    try {
-                        await setDefaultAddress(defaultId);
-                    } catch (err) {
-                        console.error('Set default error:', err);
-                    }
-                }
-            });
+      async function loadAddresses() {
+        const token = getAuthToken();
+        const res = await fetch('/api/users/addresses', {
+          headers: { Authorization: `Bearer ${token}` },
         });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || 'Failed to load addresses');
+        state.addresses = data.data || [];
+        renderAddresses(state.addresses);
+      }
+
+      async function saveAddress(payload, id) {
+        const token = getAuthToken();
+        const method = id ? 'PUT' : 'POST';
+        const url = id ? `/api/users/addresses/${id}` : '/api/users/addresses';
+        const res = await fetch(url, {
+          method,
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || 'Failed to save address');
+        state.addresses = data.data || [];
+        renderAddresses(state.addresses);
+      }
+
+      async function deleteAddress(id) {
+        const token = getAuthToken();
+        const res = await fetch(`/api/users/addresses/${id}`, {
+          method: 'DELETE',
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || 'Failed to delete address');
+        state.addresses = data.data || [];
+        renderAddresses(state.addresses);
+      }
+
+      async function setDefaultAddress(id) {
+        const current = state.addresses.find((a) => a._id === id);
+        if (!current) return;
+        await saveAddress({ isDefault: true }, id);
+      }
+
+      document.addEventListener('DOMContentLoaded', async () => {
+        const loadingState = document.getElementById('loadingState');
+        const notLoggedInState = document.getElementById('notLoggedInState');
+        const content = document.getElementById('addressesContent');
+
+        if (!isLoggedIn()) {
+          loadingState.classList.add('hidden');
+          notLoggedInState.classList.remove('hidden');
+          return;
+        }
+
+        try {
+          await loadAddresses();
+          loadingState.classList.add('hidden');
+          content.classList.remove('hidden');
+        } catch (err) {
+          console.error('Address load error:', err);
+          loadingState.classList.add('hidden');
+          notLoggedInState.classList.remove('hidden');
+        }
+
+        document.getElementById('addNewAddress').addEventListener('click', () => openModal());
+        document.getElementById('closeModal').addEventListener('click', closeModal);
+        document.getElementById('cancelAddress').addEventListener('click', closeModal);
+
+        document.getElementById('addressForm').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const payload = {
+            type: document.getElementById('addressType').value,
+            fullName: document.getElementById('fullName').value,
+            addressLine1: document.getElementById('addressLine1').value,
+            addressLine2: document.getElementById('addressLine2').value,
+            city: document.getElementById('city').value,
+            state: document.getElementById('state').value,
+            zipCode: document.getElementById('zipCode').value,
+            country: document.getElementById('country').value,
+            phone: document.getElementById('phoneNumber').value,
+            landline: document.getElementById('landlineNumber').value,
+            isDefault: document.getElementById('isDefault').checked,
+          };
+          const id = document.getElementById('addressId').value || null;
+          try {
+            await saveAddress(payload, id);
+            closeModal();
+          } catch (err) {
+            console.error('Save address error:', err);
+          }
+        });
+
+        document.getElementById('addressContainer').addEventListener('click', async (e) => {
+          const editId = e.target.closest('[data-edit]')?.dataset.edit;
+          const deleteId = e.target.closest('[data-delete]')?.dataset.delete;
+          const defaultId = e.target.closest('[data-default]')?.dataset.default;
+
+          if (editId) {
+            const addr = state.addresses.find((a) => a._id === editId);
+            openModal(addr);
+          }
+
+          if (deleteId) {
+            const confirmed = window.confirm('Delete this address?');
+            if (!confirmed) return;
+            try {
+              await deleteAddress(deleteId);
+            } catch (err) {
+              console.error('Delete address error:', err);
+            }
+          }
+
+          if (defaultId) {
+            try {
+              await setDefaultAddress(defaultId);
+            } catch (err) {
+              console.error('Set default error:', err);
+            }
+          }
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
