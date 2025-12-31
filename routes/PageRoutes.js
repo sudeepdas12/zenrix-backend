@@ -17,14 +17,24 @@ router.get('/', async (req, res) => {
 router.post('/order', requireAdmin, async (req, res) => {
   try {
     const { orders } = req.body;
-    if (!Array.isArray(orders)) return res.status(400).json({ success: false, error: 'Invalid payload: orders must be an array' });
+    if (!Array.isArray(orders))
+      return res
+        .status(400)
+        .json({ success: false, error: 'Invalid payload: orders must be an array' });
     // Simple validation
     for (const o of orders) {
       if (!o || !o.id || typeof o.order !== 'number' || !Number.isFinite(o.order)) {
-        return res.status(400).json({ success: false, error: 'Invalid orders array: each item must be { id, order:number }' });
+        return res
+          .status(400)
+          .json({
+            success: false,
+            error: 'Invalid orders array: each item must be { id, order:number }',
+          });
       }
     }
-    const ops = orders.map(o => ({ updateOne: { filter: { _id: o.id }, update: { order: o.order } } }));
+    const ops = orders.map((o) => ({
+      updateOne: { filter: { _id: o.id }, update: { order: o.order } },
+    }));
     if (!ops.length) return res.json({ success: true });
     await Page.bulkWrite(ops);
     res.json({ success: true });
@@ -69,10 +79,15 @@ router.get('/:id', async (req, res) => {
 // CREATE page (protected). If order not provided, append to end.
 router.post('/', requireAdmin, async (req, res) => {
   try {
+    console.log('CREATE PAGE headers:', req.headers && req.headers.authorization);
+    console.log('CREATE PAGE body preview:', JSON.stringify(req.body).slice(0,200));
     // Basic slug validation and normalization
     if (!req.body.slug) return res.status(400).json({ success: false, error: 'Slug is required' });
     const slug = String(req.body.slug).trim().toLowerCase();
-    if (!/^[a-z0-9\-]+$/.test(slug)) return res.status(400).json({ success: false, error: 'Slug must be lowercase alphanumeric and dashes only' });
+    if (!/^[a-z0-9\-]+$/.test(slug))
+      return res
+        .status(400)
+        .json({ success: false, error: 'Slug must be lowercase alphanumeric and dashes only' });
     req.body.slug = slug;
 
     // ensure proper ordering
@@ -92,7 +107,10 @@ router.post('/', requireAdmin, async (req, res) => {
 // UPDATE page (protected)
 router.put('/:id', requireAdmin, async (req, res) => {
   try {
-    const page = await Page.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const page = await Page.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
     if (!page) return res.status(404).json({ success: false, error: 'Page not found' });
     res.json({ success: true, data: page });
   } catch (err) {

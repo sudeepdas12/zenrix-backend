@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoose = require('mongoose');
 
-describe('Products API - delete & auth flow', function() {
+describe('Products API - delete & auth flow', function () {
   this.timeout(20000);
   let mongoServer;
   let app;
@@ -16,7 +16,20 @@ describe('Products API - delete & auth flow', function() {
     process.env.ADMIN_PASSWORD = 'testpass';
     process.env.JWT_SECRET = 'testsecret';
     // Require app after envs are set
+    try {
+      delete require.cache[require.resolve('../server')];
+    } catch (e) {}
     app = require('../server');
+
+    // Wait until mongoose is connected
+    await new Promise((resolve) => {
+      const check = setInterval(() => {
+        if (mongoose.connection.readyState === 1) {
+          clearInterval(check);
+          resolve();
+        }
+      }, 50);
+    });
   });
 
   after(async () => {
@@ -24,7 +37,7 @@ describe('Products API - delete & auth flow', function() {
     if (mongoServer) await mongoServer.stop();
   });
 
-  it('should login as admin', async function() {
+  it('should login as admin', async function () {
     const res = await request(app)
       .post('/api/admin/login')
       .send({ password: 'testpass' })
@@ -35,7 +48,7 @@ describe('Products API - delete & auth flow', function() {
     token = res.body.token;
   });
 
-  it('should create a product (protected)', async function() {
+  it('should create a product (protected)', async function () {
     const product = {
       name: 'Test Delete Product',
       price: 9.99,
@@ -44,7 +57,7 @@ describe('Products API - delete & auth flow', function() {
       category: 'other',
       stock: 1,
       featured: false,
-      rating: 4.0
+      rating: 4.0,
     };
 
     const res = await request(app)
@@ -53,13 +66,13 @@ describe('Products API - delete & auth flow', function() {
       .set('Accept', 'application/json')
       .set('Authorization', 'Bearer ' + token);
 
-    expect(res.status).to.be.oneOf([200,201]);
+    expect(res.status).to.be.oneOf([200, 201]);
     expect(res.body).to.have.property('success', true);
     expect(res.body).to.have.property('data');
     createdProductId = res.body.data._id;
   });
 
-  it('should update the product (protected)', async function() {
+  it('should update the product (protected)', async function () {
     const res = await request(app)
       .put(`/api/products/${createdProductId}`)
       .send({ price: 19.99 })
@@ -71,7 +84,7 @@ describe('Products API - delete & auth flow', function() {
     expect(res.body.data).to.have.property('price', 19.99);
   });
 
-  it('should delete the product (protected)', async function() {
+  it('should delete the product (protected)', async function () {
     const res = await request(app)
       .delete(`/api/products/${createdProductId}`)
       .set('Accept', 'application/json')
@@ -82,7 +95,7 @@ describe('Products API - delete & auth flow', function() {
     expect(res.body).to.have.property('deletedId', createdProductId);
   });
 
-  it('deleted product should not be retrievable', async function() {
+  it('deleted product should not be retrievable', async function () {
     const res = await request(app)
       .get(`/api/products/${createdProductId}`)
       .set('Accept', 'application/json');

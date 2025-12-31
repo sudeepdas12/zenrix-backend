@@ -7,7 +7,7 @@ const componentSchema = new mongoose.Schema({
   data: { type: Object, default: {} },
   published: { type: Boolean, default: true },
   createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now }
+  updatedAt: { type: Date, default: Date.now },
 });
 
 componentSchema.pre('save', function () {

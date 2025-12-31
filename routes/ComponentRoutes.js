@@ -50,7 +50,10 @@ router.post('/', requireAdmin, async (req, res) => {
 // UPDATE (protected)
 router.put('/:id', requireAdmin, async (req, res) => {
   try {
-    const comp = await Component.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const comp = await Component.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
     if (!comp) return res.status(404).json({ success: false, error: 'Component not found' });
     res.json({ success: true, data: comp });
   } catch (err) {
