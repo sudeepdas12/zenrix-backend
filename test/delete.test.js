@@ -16,7 +16,18 @@ describe('Products API - delete & auth flow', function() {
     process.env.ADMIN_PASSWORD = 'testpass';
     process.env.JWT_SECRET = 'testsecret';
     // Require app after envs are set
+    try { delete require.cache[require.resolve('../server')]; } catch (e) {}
     app = require('../server');
+
+    // Wait until mongoose is connected
+    await new Promise((resolve) => {
+      const check = setInterval(() => {
+        if (mongoose.connection.readyState === 1) {
+          clearInterval(check);
+          resolve();
+        }
+      }, 50);
+    });
   });
 
   after(async () => {

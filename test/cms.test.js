@@ -1,14 +1,38 @@
 const request = require('supertest');
-const app = require('../server');
+const { MongoMemoryServer } = require('mongodb-memory-server');
+const mongoose = require('mongoose');
 const expect = require('chai').expect;
 
 describe('CMS - Pages & Components API', function() {
+  this.timeout(30000);
   let token = null;
   let pageId = null;
   let compId = null;
+  let mongod;
+  let app;
 
-  before(function() {
+  before(async function() {
+    mongod = await MongoMemoryServer.create();
+    process.env.MONGODB_URI = mongod.getUri();
     process.env.ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin';
+    // Clear server module cache so server.js re-initializes with this test's MONGODB_URI
+    try { delete require.cache[require.resolve('../server')]; } catch (e) {}
+    app = require('../server');
+
+    // Wait until mongoose is connected
+    await new Promise((resolve) => {
+      const check = setInterval(() => {
+        if (mongoose.connection.readyState === 1) {
+          clearInterval(check);
+          resolve();
+        }
+      }, 50);
+    });
+  });
+
+  after(async function() {
+    try { await mongoose.disconnect(); } catch (e) {}
+    if (mongod) await mongod.stop();
   });
 
   it('should login as admin', async function() {

@@ -8,63 +8,56 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js" defer></script>
 </head>
-<body class="bg-gray-50">
-    <custom-navbar></custom-navbar>
-    <main class="container mx-auto px-4 py-8">
-        <div class="flex justify-between items-center mb-8">
-            <div id="pageContent" class="prose max-w-none">Loading page content…</div>
-            <div class="flex items-center">
-                <label for="sort" class="mr-2">Sort by:</label>
-                <select id="sort" class="border rounded px-3 py-2">
-                    <option value="popular">Most Popular</option>
-                    <option value="price-low">Price: Low to High</option>
-                    <option value="price-high">Price: High to Low</option>
-                    <option value="rating">Highest Rated</option>
-                    <option value="newest">Newest</option>
-                </select>
+<body class="bg-slate-950 text-slate-100">
+  <custom-navbar></custom-navbar>
+  <main class="relative">
+    <section class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 py-14 products-hero">
+      <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_15%_20%,rgba(99,102,241,0.4),transparent_45%),radial-gradient(circle_at_80%_10%,rgba(236,72,153,0.25),transparent_40%)] products-hero-overlay"></div>
+      <div class="container mx-auto px-4 relative">
+        <div class="flex flex-wrap items-center justify-between gap-6">
+          <div class="space-y-4 max-w-2xl">
+            <p class="text-xs uppercase tracking-[0.4em] text-indigo-200">Products</p>
+            <h1 class="text-4xl md:text-5xl font-black leading-tight">Browse the latest drops.</h1>
+            <p class="text-slate-200/80 max-w-xl">Filter by price, sort by what matters, and jump straight to sale picks when you want the best deals.</p>
+            <div class="flex flex-wrap gap-2 text-sm">
+              <a href="/products.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold shadow">All</a>
+              <a href="/products.html?category=sale" class="px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white">On Sale</a>
+              <a href="/products.html?category=electronics" class="px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white">Electronics</a>
+              <a href="/products.html?category=fashion" class="px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white">Fashion</a>
+              <a href="/products.html?category=home" class="px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white">Home</a>
+              <a href="/products.html?category=beauty" class="px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white">Beauty</a>
             </div>
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-8">
-            <aside class="w-full md:w-64 flex-shrink-0">
-                <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
-                    <h3 class="font-semibold mb-4">Categories</h3>
-                    <ul class="space-y-2">
-                        <li><a href="/products.html" class="text-gray-600 hover:text-blue-600">All Categories</a></li>
-                        <li><a href="/products.html?category=electronics" class="text-gray-600 hover:text-blue-600">Electronics</a></li>
-                        <li><a href="/products.html?category=fashion" class="text-gray-600 hover:text-blue-600">Fashion</a></li>
-                        <li><a href="/products.html?category=home" class="text-gray-600 hover:text-blue-600">Home & Kitchen</a></li>
-                        <li><a href="/products.html?category=beauty" class="text-gray-600 hover:text-blue-600">Beauty</a></li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-4 rounded-lg shadow-sm">
-                    <h3 class="font-semibold mb-4">Filter by Price</h3>
-                    <input type="range" min="0" max="1000" value="500" class="w-full mb-4">
-                    <div class="flex justify-between">
-                        <span>$0</span>
-                        <span>$1000</span>
-                    </div>
-                </div>
-            </aside>
-
-            <div class="flex-grow">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="productsGrid">
-                    <!-- Products will be loaded here -->
-                </div>
-                <div class="flex justify-center mt-8">
-                    <nav class="flex items-center gap-2">
-                        <a href="#" class="px-4 py-2 border rounded hover:bg-gray-100">1</a>
-                        <a href="#" class="px-4 py-2 border rounded hover:bg-gray-100">2</a>
-                        <a href="#" class="px-4 py-2 border rounded hover:bg-gray-100">3</a>
-                        <span class="px-4 py-2">...</span>
-                        <a href="#" class="px-4 py-2 border rounded hover:bg-gray-100">10</a>
-                    </nav>
-                </div>
+          </div>
+          <div class="rounded-[28px] bg-white/5 border border-white/10 p-6 min-w-[280px] backdrop-blur shadow-2xl">
+            <div class="flex items-center justify-between text-sm text-indigo-100">
+              <span>Sort</span>
+              <select id="sort" class="bg-white/10 border border-white/20 rounded-xl px-3 py-2 text-white text-sm focus:outline-none">
+                <option value="popular">Most Popular</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+                <option value="newest">Newest</option>
+              </select>
             </div>
+            <div class="mt-5 text-sm text-indigo-100">
+              <div class="flex items-center justify-between mb-2">
+                <span>Max price</span>
+                <span id="priceFilterValue">रु 1,000</span>
+              </div>
+              <input id="priceFilter" type="range" min="0" max="1000" value="1000" step="50" data-default-max="1000" class="w-full accent-white/80">
+              <p class="text-xs text-indigo-100/80 mt-2">Drag to cap prices. Uses sale price when applicable.</p>
+            </div>
+          </div>
         </div>
-    </main>
-    <custom-footer></custom-footer>
+      </div>
+    </section>
+
+    <section class="container mx-auto px-4 py-12">
+      <div id="pageContent" class="prose prose-invert max-w-none mb-10"></div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productsGrid"></div>
+    </section>
+  </main>
+  <custom-footer></custom-footer>
 
     <script src="components/navbar.js"></script>
     <script src="components/footer.js"></script>
@@ -230,9 +223,9 @@ document.addEventListener('DOMContentLoaded', function() {
     } else if (msg.includes('product') || msg.includes('item')) {
       response = "We have electronics, fashion, home goods, and beauty products. Check our Products page for all items!";
     } else if (msg.includes('price') || msg.includes('cost')) {
-      response = "Products start from $24.99. Check individual product pages for exact prices.";
+      response = "Products start from रु 2,499. Check individual product pages for exact prices.";
     } else if (msg.includes('delivery') || msg.includes('shipping')) {
-      response = "We deliver in 3-5 business days. Free shipping on orders over $50!";
+      response = "We deliver in 3-5 business days. Free shipping on orders over रु 7,500.";
     } else if (msg.includes('return') || msg.includes('refund')) {
       response = "We have a 30-day return policy. Contact support@zenrix.com for returns.";
     } else if (msg.includes('contact') || msg.includes('support')) {
